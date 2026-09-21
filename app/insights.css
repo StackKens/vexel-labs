@@ -1,0 +1,125 @@
+/* Insights page styling */
+.insights-page { background: var(--paper); color: var(--ink); }
+.insights-hero { padding-top: 9rem; padding-bottom: 5rem; background: var(--ink); color: var(--paper); }
+.insights-hero-content h1 { font-size: clamp(3.4rem, 7vw, 7.8rem); line-height: 0.88; letter-spacing: -0.085em; font-weight: 500; margin: 2rem 0; max-width: 800px; }
+.insights-hero .hero-description { max-width: 500px; color: #b4b5ad; line-height: 1.55; font-size: 0.94rem; margin-top: 1.2rem; }
+.insights-search { margin-top: 4rem; max-width: 500px; }
+.search-box { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; background: var(--paper); color: var(--ink); border-radius: 0; border: 1px solid #d7d7d0; }
+.search-box input { flex: 1; border: 0; background: none; outline: 0; font-size: 0.95rem; color: var(--ink); }
+.search-box input::placeholder { color: var(--muted); }
+.search-box svg { color: var(--muted); opacity: 0.6; }
+
+.featured-article { padding-top: 6rem; padding-bottom: 6rem; background: #e6e6df; }
+.featured-card { border: 1px solid #bfc0b9; padding: 2rem; }
+.featured-label { font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.featured-category { font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-left: 1rem; }
+.featured-card h2 { font-size: clamp(2.4rem, 5vw, 4.8rem); line-height: 1.05; letter-spacing: -0.08em; font-weight: 500; margin: 1.5rem 0; max-width: 700px; }
+.featured-excerpt { font-size: 1.1rem; line-height: 1.6; color: var(--muted); max-width: 600px; margin-bottom: 2rem; }
+.featured-info { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #bfc0b9; }
+.featured-author { display: flex; flex-direction: column; }
+.author-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+.author-role { font-size: 0.73rem; color: var(--muted); margin-top: 0.3rem; }
+.featured-meta-right { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--muted); }
+.featured-link { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: opacity 0.2s; }
+.featured-link:hover { opacity: 0.6; }
+
+.insights-filters { padding-top: 4rem; padding-bottom: 3rem; border-top: 1px solid #d7d7d0; }
+.filters-top h3 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
+.category-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.category-btn { padding: 0.6rem 1.1rem; background: var(--paper); color: var(--ink); border: 1px solid #d7d7d0; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; }
+.category-btn:hover { background: #deded6; }
+.category-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.articles-listing { padding-top: 3rem; padding-bottom: 8rem; }
+.articles-list { display: flex; flex-direction: column; }
+.article-row { display: grid; grid-template-columns: 40px 1fr 24px; gap: 1.8rem; align-items: start; padding: 1.8rem 0; border-bottom: 1px solid #d7d7d0; }
+.article-index { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); font-weight: 500; margin-top: 0.3rem; }
+.article-content { display: flex; flex-direction: column; gap: 0.8rem; }
+.article-meta-top { display: flex; gap: 1rem; align-items: center; }
+.article-category { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
+.article-date { font-size: 0.68rem; letter-spacing: 0.08em; color: var(--muted); }
+.article-row h3 { font-size: clamp(1.4rem, 3vw, 2.2rem); line-height: 1.15; letter-spacing: -0.06em; font-weight: 500; margin: 0; }
+.article-excerpt { font-size: 0.9rem; line-height: 1.55; color: var(--muted); max-width: 500px; }
+.article-meta-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 0.8rem; font-size: 0.75rem; color: var(--muted); }
+.article-link { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; color: var(--ink); opacity: 0.5; transition: opacity 0.2s; margin-top: 0.2rem; }
+.article-link:hover { opacity: 1; }
+
+.empty-state { padding-top: 6rem; padding-bottom: 8rem; text-align: center; }
+.empty-content h3 { font-size: 1.8rem; font-weight: 500; letter-spacing: -0.05em; margin-bottom: 0.8rem; }
+.empty-content p { font-size: 0.9rem; color: var(--muted); }
+
+.insights-perspective { padding-top: 8rem; padding-bottom: 8rem; background: #e6e6df; }
+.perspective-content { max-width: 700px; }
+.perspective-content h2 { font-size: clamp(2.2rem, 4.5vw, 4.2rem); line-height: 1.05; letter-spacing: -0.07em; font-weight: 500; margin-bottom: 2rem; }
+.perspective-content p { font-size: 1rem; line-height: 1.7; color: var(--muted); }
+
+/* Article detail page */
+.article-page { background: var(--paper); }
+.reading-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 1000; transition: width 0.1s; }
+.article-container { max-width: 900px; margin: 0 auto; }
+.article-header { padding-top: 9rem; padding-bottom: 4rem; }
+.article-header-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.article-category { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
+.article-divider { color: var(--muted); }
+.article-reading-time { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.article-title { font-size: clamp(2.8rem, 6vw, 5.4rem); line-height: 1.05; letter-spacing: -0.08em; font-weight: 500; margin: 1.5rem 0; max-width: 850px; }
+.article-subtitle { font-size: 1.2rem; line-height: 1.5; color: var(--muted); margin-bottom: 2rem; max-width: 700px; }
+.article-byline { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid #d7d7d0; }
+.byline-author { display: flex; flex-direction: column; }
+.author-name { font-size: 0.9rem; font-weight: 500; }
+.author-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
+.byline-date { font-size: 0.85rem; color: var(--muted); }
+
+.article-body { padding-top: 4rem; padding-bottom: 3rem; }
+.article-content { max-width: 700px; }
+.article-content h2 { font-size: 1.8rem; font-weight: 500; letter-spacing: -0.05em; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+.article-content h3 { font-size: 1.4rem; font-weight: 500; letter-spacing: -0.04em; margin-top: 2rem; margin-bottom: 1.2rem; }
+.article-content p { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #454643; }
+.article-content strong { font-weight: 600; }.article-content ul{padding-left:1.3rem;margin:0 0 1.5rem;color:#454643}.article-content li{font-size:1rem;line-height:1.8;padding-left:.35rem;margin-bottom:.55rem}.article-content code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:#e8e8e1;padding:.15rem .35rem}
+
+.article-tags { padding-top: 3rem; padding-bottom: 3rem; border-top: 1px solid #d7d7d0; }
+.tags-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.tags-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.tag { display: inline-block; padding: 0.5rem 1rem; background: #f0efea; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 0; }
+
+.related-articles { padding-top: 6rem; padding-bottom: 6rem; background: #e6e6df; }
+.related-title { font-size: 1.3rem; font-weight: 500; letter-spacing: -0.05em; margin-bottom: 2.5rem; }
+.related-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.related-card { padding: 1.5rem; background: var(--paper); border: 1px solid #d7d7d0; }
+.related-category { font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); font-weight: 600; display: block; margin-bottom: 0.8rem; }
+.related-card h3 { font-size: 1.3rem; line-height: 1.2; letter-spacing: -0.05em; font-weight: 500; margin-bottom: 0.8rem; }
+.related-card p { font-size: 0.85rem; line-height: 1.5; color: var(--muted); margin-bottom: 1.2rem; }
+.related-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: opacity 0.2s; }
+.related-link:hover { opacity: 0.6; }
+
+.insights-cta { padding-top: 6rem; padding-bottom: 6rem; text-align: center; }
+.cta-content { max-width: 500px; margin: 0 auto; }
+.cta-content h2 { font-size: 2.2rem; font-weight: 500; letter-spacing: -0.06em; margin-bottom: 1rem; }
+.cta-content p { font-size: 0.95rem; line-height: 1.6; color: var(--muted); margin-bottom: 2rem; }
+.cta-content .button { margin: 0 auto; }
+
+@media (max-width: 760px) {
+  .insights-hero { padding-top: 7rem; padding-bottom: 3rem; }
+  .insights-hero-content h1 { font-size: clamp(3.5rem, 15vw, 5rem); }
+  .insights-search { margin-top: 2rem; }
+  .featured-article { padding-top: 4rem; padding-bottom: 4rem; }
+  .featured-card { padding: 1.5rem; }
+  .featured-card h2 { font-size: clamp(2rem, 10vw, 3.5rem); margin: 1rem 0; }
+  .insights-filters { padding: 2rem 0; }
+  .category-buttons { gap: 0.6rem; }
+  .category-btn { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
+  .articles-listing { padding-top: 2rem; padding-bottom: 4rem; }
+  .article-row { grid-template-columns: 1fr; gap: 1rem; }
+  .article-index { display: none; }
+  .article-link { position: absolute; right: 0; top: 0; }
+  .article-header { padding-top: 6rem; padding-bottom: 3rem; }
+  .article-title { font-size: clamp(2rem, 12vw, 3.5rem); margin: 1rem 0; }
+  .article-subtitle { font-size: 1rem; }
+  .article-byline { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .article-body { padding-top: 2rem; }
+  .article-content h2 { font-size: 1.4rem; margin-top: 1.8rem; }
+  .article-content p { font-size: 0.95rem; line-height: 1.7; }
+  .related-list { grid-template-columns: 1fr; }
+  .insights-cta { padding: 4rem 0; }
+  .cta-content h2 { font-size: 1.6rem; }
+}
