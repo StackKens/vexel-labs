@@ -1,29 +1,39 @@
 import type { Metadata } from 'next'
-import ServiceDetailPage from './detail-client'
+import { notFound } from 'next/navigation'
+import { getServiceBySlug, services } from '@/lib/services-data'
+import ServiceDetailClient from './detail-client'
 
-const titles: Record<string, string> = {
-  'software-engineering': 'Software Engineering',
-  'artificial-intelligence': 'Artificial Intelligence',
-  'mobile-applications': 'Mobile Applications',
+type Props = { params: Promise<{ slug: string }> }
+
+export function generateStaticParams() {
+  return services.map((service) => ({ slug: service.slug }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export const dynamicParams = false
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const title = titles[slug] ?? 'Technology Services'
+  const service = getServiceBySlug(slug)
+
+  if (!service) return { title: 'Service not found' }
+
   return {
-    title: `${title} — Vexel Labs`,
-    description: `${title} capabilities from Vexel Labs. Technology built around real problems.`,
-    openGraph: { title: `${title} — Vexel Labs`, description: `${title} capabilities from Vexel Labs.` },
+    title: service.name,
+    description: service.details,
+    alternates: { canonical: `/services/${service.slug}` },
+    openGraph: {
+      title: `${service.name} — Vexel Labs`,
+      description: service.details,
+      url: `/services/${service.slug}`,
+    },
   }
 }
 
-export function generateStaticParams() {
-  return Object.keys(titles).map((slug) => ({ slug }))
-}
-
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ServicePage({ params }: Props) {
   const { slug } = await params
-  return <ServiceDetailPage serviceKey={slug} />
-}
+  const service = getServiceBySlug(slug)
 
-export const dynamicParams = true
+  if (!service) notFound()
+
+  return <ServiceDetailClient service={service} />
+}

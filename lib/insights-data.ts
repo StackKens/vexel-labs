@@ -18,6 +18,8 @@ export interface Article {
   tags?: string[]
 }
 
+export type ArticleSummary = Omit<Article, 'content'>
+
 const vexelTeam: Author = {
   name: 'Vexel Labs',
   role: 'Technology & Engineering',
@@ -265,4 +267,9 @@ export function getRelatedArticles(slug: string, limit: number = 3): Article[] {
 
 export function getFeaturedArticle(): Article | undefined {
   return articles.find(article => article.featured)
+}
+
+export function toArticleSummary(article: Article): ArticleSummary {
+  const { content: _content, ...summary } = article
+  return summary
 }

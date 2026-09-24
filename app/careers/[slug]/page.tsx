@@ -1,47 +1,39 @@
-import { Metadata } from 'next'
-import { getJobBySlug, getAllJobs } from '@/lib/careers-data'
-import JobDetailClient from './job-detail-client'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { getAllJobs, getJobBySlug } from '@/lib/careers-data'
+import JobDetailClient from './job-detail-client'
 
-interface Props {
-  params: Promise<{ slug: string }>
+type Props = { params: Promise<{ slug: string }> }
+
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return getAllJobs().map((job) => ({ slug: job.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const job = getJobBySlug(slug)
 
-  if (!job) {
-    return {
-      title: 'Job not found — Vexel Labs',
-    }
-  }
+  if (!job) return { title: 'Role not found' }
 
   return {
-    title: `${job.title} — Vexel Labs Careers`,
+    title: job.title,
     description: job.description,
+    alternates: { canonical: `/careers/${job.slug}` },
     openGraph: {
       title: `${job.title} — Vexel Labs Careers`,
       description: job.description,
-      type: 'website',
+      url: `/careers/${job.slug}`,
     },
   }
-}
-
-export async function generateStaticParams() {
-  const jobs = getAllJobs()
-  return jobs.map((job) => ({
-    slug: job.slug,
-  }))
 }
 
 export default async function JobDetailPage({ params }: Props) {
   const { slug } = await params
   const job = getJobBySlug(slug)
 
-  if (!job) {
-    notFound()
-  }
+  if (!job) notFound()
 
   return <JobDetailClient job={job} />
 }

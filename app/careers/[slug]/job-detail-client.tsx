@@ -1,244 +1,31 @@
-'use client'
-
-import { useState } from 'react'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { JobPosting } from '@/lib/careers-data'
+import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
+import { SiteButton } from '@/components/site/SiteButton'
+import { SiteFooter } from '@/components/site/SiteFooter'
+import { SiteHeader } from '@/components/site/SiteHeader'
+import { formatDate } from '@/lib/format-date'
+import type { JobPosting } from '@/lib/careers-data'
+import styles from './job-detail.module.css'
 
-interface Props {
-  job: JobPosting
-}
-
-export default function JobDetailClient({ job }: Props) {
-  const [menuOpen, setMenuOpen] = useState(false)
+export default function JobDetailClient({ job }: { job: JobPosting }) {
+  const applyHref = job.applicationUrl ?? '/contact'
 
   return (
-    <main className="job-detail-shell">
-      <header className={`site-nav ${menuOpen ? 'is-open' : ''}`}>
-        <a className="brand" href="/" aria-label="Vexel Labs home">
-          <span className="brand-mark">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span>
-            Vexel<span className="brand-muted"> Labs</span>
-          </span>
-        </a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="/about">About</a>
-          <a href="/services">Services</a>
-          <a href="/work">Work</a>
-          <a href="/insights">Insights</a>
-          <a href="/lab">Lab</a>
-          <a href="/careers">Careers</a>
-          <a href="/contact">Contact</a>
-        </nav>
-        <a className="nav-cta" href="/#contact">
-          Start a project <ArrowUpRight size={15} />
-        </a>
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <X /> : <Menu />}
-        </button>
-        {menuOpen && (
-          <nav className="mobile-nav" aria-label="Mobile navigation">
-            <a href="/about" onClick={() => setMenuOpen(false)}>
-              About
-            </a>
-            <a href="/services" onClick={() => setMenuOpen(false)}>
-              Services
-            </a>
-            <a href="/work" onClick={() => setMenuOpen(false)}>
-              Work
-            </a>
-            <a href="/insights" onClick={() => setMenuOpen(false)}>
-              Insights
-            </a>
-            <a href="/lab" onClick={() => setMenuOpen(false)}>
-              Lab
-            </a>
-            <a href="/careers" onClick={() => setMenuOpen(false)}>
-              Careers
-            </a>
-            <a href="/contact" onClick={() => setMenuOpen(false)}>
-              Contact
-            </a>
-            <a href="/#contact" onClick={() => setMenuOpen(false)}>
-              Start a project <ArrowUpRight size={15} />
-            </a>
-          </nav>
-        )}
-      </header>
+    <main className={styles.page}>
+      <SiteHeader tone="dark" />
 
-      {/* Job Header */}
-      <section className="job-header section-pad">
-        <div className="job-header-meta">
-          <span className="job-category">{job.department}</span>
-          <span className="separator">•</span>
-          <span className="job-posted">{new Date(job.postedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-        </div>
-        <h1>{job.title}</h1>
-        <div className="job-header-details">
-          <div className="detail-item">
-            <span className="detail-label">Location</span>
-            <span className="detail-value">{job.location}</span>
-          </div>
-          <div className="detail-item">
-            <span className="detail-label">Employment Type</span>
-            <span className="detail-value">{job.employmentType}</span>
-          </div>
-          <div className="detail-item">
-            <span className="detail-label">Experience Level</span>
-            <span className="detail-value">{job.experienceLevel}</span>
-          </div>
-        </div>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}><p className={styles.eyebrow}><span aria-hidden="true" /> {job.department}</p><h1>{job.title}</h1><p className={styles.heroMeta}>{job.location} / {job.employmentType} / {job.experienceLevel}</p><p className={styles.heroDescription}>{job.description}</p><div className={styles.heroActions}><SiteButton href={applyHref}>Apply for this role</SiteButton><Link className={styles.textLink} href="/careers">Back to roles <ArrowDownRight size={16} aria-hidden="true" /></Link></div></div>
+        <div className={styles.rolePanel}><div><span>Role detail</span><span>Posted {formatDate(job.postedDate)}</span></div><strong>{job.title}</strong><small>{job.department} / {job.location}</small></div>
       </section>
 
-      {/* Job Content */}
-      <section className="job-content section-pad">
-        <div className="job-main">
-          {/* About the Role */}
-          <div className="job-section">
-            <h2>About The Role</h2>
-            <p>{job.description}</p>
-          </div>
-
-          {/* Responsibilities */}
-          <div className="job-section">
-            <h2>Responsibilities</h2>
-            <ul className="job-list">
-              {job.responsibilities.map((responsibility, index) => (
-                <li key={index}>{responsibility}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Requirements */}
-          <div className="job-section">
-            <h2>What We're Looking For</h2>
-            <div className="requirements-grid">
-              <div className="requirement-block">
-                <h3>Required</h3>
-                <ul className="job-list">
-                  {job.requirements.required.map((req, index) => (
-                    <li key={index}>{req}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="requirement-block">
-                <h3>Nice to Have</h3>
-                <ul className="job-list">
-                  {job.requirements.niceToHave.map((req, index) => (
-                    <li key={index}>{req}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Technologies */}
-          {job.technologies && job.technologies.length > 0 && (
-            <div className="job-section">
-              <h2>Technologies</h2>
-              <div className="tech-list">
-                {job.technologies.map((tech) => (
-                  <span key={tech} className="tech-tag">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Benefits */}
-          {job.benefits && job.benefits.length > 0 && (
-            <div className="job-section">
-              <h2>Benefits</h2>
-              <ul className="job-list">
-                {job.benefits.map((benefit, index) => (
-                  <li key={index}>{benefit}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        {/* Sidebar */}
-        <aside className="job-sidebar">
-          <div className="sidebar-card">
-            <h3>Ready to apply?</h3>
-            <p>Send us your resume, portfolio, and a note about why this role excites you.</p>
-            <a href="/contact" className="button button-primary button-full">
-              Apply Now <ArrowUpRight size={16} />
-            </a>
-            <p className="sidebar-note">Or reach out at hello@vexellabs.com</p>
-          </div>
-
-          <div className="sidebar-card">
-            <h3>Learn more</h3>
-            <Link href="/about" className="sidebar-link">
-              About Vexel
-            </Link>
-            <Link href="/work" className="sidebar-link">
-              See our work
-            </Link>
-            <Link href="/careers" className="sidebar-link">
-              Back to careers
-            </Link>
-          </div>
-        </aside>
+      <section className={styles.roleBody}>
+        <div className={styles.mainColumn}><section><p className={styles.sectionLabel}>/ 01 — About the role</p><h2>Make the work<br /><em>clearer.</em></h2><p>{job.description}</p></section><section><p className={styles.sectionLabel}>/ 02 — Responsibilities</p><ul>{job.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></section><section><p className={styles.sectionLabel}>/ 03 — What we&apos;re looking for</p><div className={styles.requirements}><div><h3>Required</h3><ul>{job.requirements.required.map((item) => <li key={item}>{item}</li>)}</ul></div><div><h3>Nice to have</h3><ul>{job.requirements.niceToHave.map((item) => <li key={item}>{item}</li>)}</ul></div></div></section>{job.technologies && <section><p className={styles.sectionLabel}>/ 04 — Technologies</p><div className={styles.tags}>{job.technologies.map((item) => <span key={item}>{item}</span>)}</div></section>}</div>
+        <aside className={styles.sidebar}><div className={styles.applyCard}><span>Ready to apply?</span><h2>Bring your context.</h2><p>Send us your resume, portfolio, and a note about why this role interests you.</p><SiteButton href={applyHref}>Apply now</SiteButton><small>Or email hello@vexellabs.com</small></div><div className={styles.sideLinks}><Link href="/about">About Vexel <ArrowUpRight size={15} aria-hidden="true" /></Link><Link href="/work">See our work <ArrowUpRight size={15} aria-hidden="true" /></Link><Link href="/careers">All roles <ArrowUpRight size={15} aria-hidden="true" /></Link></div></aside>
       </section>
 
-      {/* Back to Careers */}
-      <section className="job-footer section-pad">
-        <Link href="/careers" className="button button-secondary">
-          ← Back to Open Roles
-        </Link>
-      </section>
-
-      {/* Signature */}
-      <section className="signature section-pad">
-        <div className="signature-word">VEXEL</div>
-        <div className="signature-bottom">
-          <span>Technology. Built with intent.</span>
-          <span>© {new Date().getFullYear()} Vexel Labs</span>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer section-pad">
-        <div className="footer-top">
-          <a className="brand" href="/">
-            <span className="brand-mark">
-              <span />
-              <span />
-              <span />
-            </span>
-            <span>
-              Vexel<span className="brand-muted"> Labs</span>
-            </span>
-          </a>
-          <p>Digital products and systems for people moving forward.</p>
-        </div>
-        <div className="footer-bottom">
-          <div className="footer-links">
-            <a href="/about">About</a>
-            <a href="/services">Capabilities</a>
-            <a href="/work">Work</a>
-            <a href="/insights">Insights</a>
-            <a href="/careers">Careers</a>
-            <a href="/contact">Contact</a>
-          </div>
-          <a href="mailto:hello@vexellabs.com">
-            hello@vexellabs.com <ArrowUpRight size={14} />
-          </a>
-        </div>
-      </footer>
+      <section className={styles.cta}><p className={styles.eyebrow}><span aria-hidden="true" /> The next step</p><h2>Do careful work<br /><em>with us.</em></h2><SiteButton href={applyHref} variant="light">Apply for this role</SiteButton></section>
+      <SiteFooter />
     </main>
   )
 }

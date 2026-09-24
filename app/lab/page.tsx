@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LabClient from './lab-client'
 
 export const metadata: Metadata = {
-  title: 'Vexel Lab — Exploring what technology can become',
+  title: 'Vexel Lab',
   description: 'Vexel Labs explores artificial intelligence, intelligent systems, automation, and emerging technology through practical experiments.',
   alternates: { canonical: '/lab' },
   openGraph: {

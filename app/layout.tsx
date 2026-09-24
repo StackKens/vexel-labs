@@ -1,11 +1,33 @@
 import { Analytics } from '@vercel/analytics/next'
+import { Inter } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
 export const metadata: Metadata = {
-  title: 'Vexel Labs — Technology, built with intent',
-  description: 'Vexel Labs builds thoughtful digital products, intelligent systems, and the infrastructure that makes progress possible.',
+  metadataBase: new URL('https://vexellabs.com'),
+  title: {
+    default: 'Vexel Labs — Technology, built with intent',
+    template: '%s — Vexel Labs',
+  },
+  description: 'Vexel Labs designs and engineers software, digital products, and intelligent systems for real-world problems.',
   generator: 'Vexel Labs',
+  openGraph: {
+    title: 'Vexel Labs — Technology, built with intent',
+    description: 'Software, digital products, and intelligent systems built around real problems.',
+    type: 'website',
+    siteName: 'Vexel Labs',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Vexel Labs — Technology, built with intent',
+    description: 'Software, digital products, and intelligent systems built around real problems.',
+  },
   icons: {
     icon: [
       {
@@ -26,11 +48,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'light',
+  themeColor: '#f3f2ed',
 }
 
 export default function RootLayout({
@@ -40,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className={inter.variable}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

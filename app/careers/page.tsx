@@ -1,13 +1,14 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import CareersClient from './careers-client'
 
 export const metadata: Metadata = {
-  title: 'Careers — Vexel Labs',
+  title: 'Careers',
   description: 'Join Vexel Labs. Build technology with ambitious people. Explore open positions in engineering, AI/ML, design, and more.',
+  alternates: { canonical: '/careers' },
   openGraph: {
     title: 'Careers — Vexel Labs',
     description: 'Join Vexel Labs. Build technology with ambitious people.',
-    type: 'website',
+    url: '/careers',
   },
 }
 

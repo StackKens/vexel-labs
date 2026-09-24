@@ -1,61 +1,93 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDown, ArrowUpRight, Check, Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowUpRight, Check } from 'lucide-react'
+import { SiteButton } from '@/components/site/SiteButton'
+import { SiteFooter } from '@/components/site/SiteFooter'
+import { SiteHeader } from '@/components/site/SiteHeader'
+import styles from './lab.module.css'
 
 const explorations = [
-  { number: '01', title: 'Artificial Intelligence', text: 'Building intelligent systems that can understand, generate, predict, and assist.', tag: 'INTELLIGENCE', tone: 'lime' },
-  { number: '02', title: 'Machine Learning', text: 'Exploring models, data, evaluation, and practical applications that learn over time.', tag: 'MODELS', tone: 'dark' },
-  { number: '03', title: 'Automation', text: 'Designing connected workflows that remove repetitive work and make operations clearer.', tag: 'SYSTEMS', tone: 'light' },
-  { number: '04', title: 'New Interfaces', text: 'Testing more natural ways for people to interact with software and information.', tag: 'INTERACTION', tone: 'dark' },
+  { number: '01', title: 'Artificial Intelligence', text: 'Building intelligent systems that can understand, generate, predict, and assist.', tag: 'Intelligence', question: 'What becomes possible when a system understands the work?' },
+  { number: '02', title: 'Machine Learning', text: 'Exploring models, data, evaluation, and practical applications that learn over time.', tag: 'Models', question: 'How do we know when a model is useful?' },
+  { number: '03', title: 'Automation', text: 'Designing connected workflows that remove repetitive work and make operations clearer.', tag: 'Systems', question: 'Which parts of a process should not remain manual?' },
+  { number: '04', title: 'New Interfaces', text: 'Testing more natural ways for people to interact with software and information.', tag: 'Interaction', question: 'How can an interface make complexity easier to act on?' },
 ]
 
 const experiments = [
-  { number: '01', title: 'Intelligent Web Generation', description: 'Exploring how structured requirements can become useful, functional digital experiences.', category: 'EXPERIMENT', status: 'Research', technologies: ['AI systems', 'Web products'] },
-  { number: '02', title: 'Operational Intelligence', description: 'Investigating how business data can support clearer decisions and better workflows.', category: 'RESEARCH', status: 'Exploring', technologies: ['Data systems', 'Automation'] },
-  { number: '03', title: 'Human Interfaces', description: 'Prototyping interfaces that make complex technology feel direct and understandable.', category: 'PROTOTYPE', status: 'Building', technologies: ['Product design', 'AI'] },
+  { number: '01', title: 'Intelligent Web Generation', description: 'Exploring how structured requirements can become useful, functional digital experiences.', category: 'Experiment', status: 'Research', technologies: ['AI systems', 'Web products'] },
+  { number: '02', title: 'Operational Intelligence', description: 'Investigating how business data can support clearer decisions and better workflows.', category: 'Research', status: 'Exploring', technologies: ['Data systems', 'Automation'] },
+  { number: '03', title: 'Human Interfaces', description: 'Prototyping interfaces that make complex technology feel direct and understandable.', category: 'Prototype', status: 'Building', technologies: ['Product design', 'AI'] },
 ]
 
-const pipeline = [['01', 'Data', 'The signal'], ['02', 'Experiment', 'The question'], ['03', 'Model', 'The pattern'], ['04', 'Evaluate', 'The evidence'], ['05', 'Apply', 'The system'], ['06', 'Deploy', 'The product']]
+const pipeline = [
+  ['01', 'Data', 'The signal'],
+  ['02', 'Experiment', 'The question'],
+  ['03', 'Model', 'The pattern'],
+  ['04', 'Evaluate', 'The evidence'],
+  ['05', 'Apply', 'The system'],
+  ['06', 'Deploy', 'The product'],
+]
+
+const philosophy = [
+  'Build to understand.',
+  'Experiment before assuming.',
+  'Measure what matters.',
+  'Turn research into useful systems.',
+]
 
 export default function LabClient() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState(0)
-  const [expanded, setExpanded] = useState<number | null>(0)
   const current = explorations[active]
 
   return (
-    <main className="lab-page">
-      <header className={`site-nav ${menuOpen ? 'is-open' : ''}`}>
-        <a className="brand" href="/" aria-label="Vexel Labs home"><span className="brand-mark"><span /><span /><span /></span><span>Vexel<span className="brand-muted"> Labs</span></span></a>
-        <nav className="desktop-nav" aria-label="Primary navigation"><a href="/about">About</a><a href="/services">Services</a><a href="/work">Work</a><a href="/insights">Insights</a><a href="/lab">Lab</a><a href="/contact">Contact</a></nav>
-        <a className="nav-cta" href="/contact">Start a project <ArrowUpRight size={15} /></a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>{menuOpen ? <X /> : <Menu />}</button>
-        {menuOpen && <nav className="mobile-nav" aria-label="Mobile navigation"><a href="/about">About</a><a href="/services">Services</a><a href="/work">Work</a><a href="/insights">Insights</a><a href="/lab">Lab</a><a href="/contact">Contact</a><a href="/contact">Start a project <ArrowUpRight size={15} /></a></nav>}
-      </header>
+    <main className={styles.page}>
+      <SiteHeader tone="dark" />
 
-      <section className="lab-hero section-pad">
-        <div><p className="eyebrow"><span className="eyebrow-dot" /> Vexel Lab / 001</p><h1>Exploring what<br />technology <em>can become.</em></h1><p className="hero-description">The Vexel Lab is where we investigate AI, intelligent systems, automation, and the ideas that may become useful products.</p><div className="hero-actions"><a className="button button-primary" href="#experiments">Explore the lab <ArrowDown size={16} /></a><a className="text-link" href="/contact">Work with Vexel <ArrowUpRight size={16} /></a></div></div>
-        <div className="lab-hero-visual" role="img" aria-label="A computational system connecting data, intelligence, and products"><div className="lab-grid-lines" /><div className="lab-visual-code">SYSTEM / 001<br />STATUS: ACTIVE<br />X 34.221 / Y 08.019</div><div className="lab-orbit orbit-a" /><div className="lab-orbit orbit-b" /><div className="lab-core"><span>V</span><small>INTELLIGENCE</small></div><i className="lab-dot dot-a" /><i className="lab-dot dot-b" /><i className="lab-dot dot-c" /><div className="lab-visual-caption">DATA <span>→</span> MODEL <span>→</span> PRODUCT</div></div>
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow}><span aria-hidden="true" /> Vexel Lab / research log</p>
+          <h1>Questions before<br /><em>answers.</em></h1>
+          <p>The Vexel Lab is where we investigate AI, intelligent systems, automation, and the ideas that may become useful products.</p>
+          <div className={styles.heroActions}><SiteButton href="#experiments">Explore the lab</SiteButton><Link className={styles.textLink} href="/contact">Work with Vexel <ArrowUpRight size={16} aria-hidden="true" /></Link></div>
+        </div>
+        <div className={styles.indexPanel} aria-label="Vexel Lab research areas">
+          <div className={styles.indexTop}><span>Research index</span><span>VXL / 005</span></div>
+          <div className={styles.indexRows}>{explorations.map((item) => <div key={item.number}><span>{item.number}</span><strong>{item.title}</strong><small>{item.tag}</small></div>)}</div>
+          <div className={styles.indexBottom}>Question / method / evidence</div>
+        </div>
       </section>
 
-      <section className="lab-intro section-pad"><p className="section-kicker">The lab</p><div className="lab-intro-grid"><h2>Build to <span>understand.</span><br />Explore to build better.</h2><div><p className="lead">We don&apos;t just use technology. We explore what can be built with it.</p><p>The Lab is a practical space for questions, prototypes, and technical experiments. Some become products. Some sharpen how we work. Every one starts with a real problem worth understanding.</p></div></div></section>
+      <section className={styles.intro}>
+        <p className={styles.sectionLabel}>/ 01 — The lab</p>
+        <div className={styles.introGrid}><h2>Experiments before<br /><em>claims.</em></h2><div><p className={styles.lead}>We don&apos;t just use technology. We explore what can be built with it.</p><p>The Lab is a practical space for questions, prototypes, and technical experiments. Some become products. Some sharpen how we work. Every one starts with a real problem worth understanding.</p></div></div>
+      </section>
 
-      <section className="lab-explorations section-pad"><div className="section-heading"><p className="section-kicker">What we&apos;re exploring</p><p>Ideas become clearer<br />when they are tested.</p></div><div className="exploration-layout"><div className="exploration-list" role="tablist" aria-label="Areas of exploration">{explorations.map((item, index) => <button key={item.number} className={`exploration-row ${active === index ? 'active' : ''}`} onClick={() => setActive(index)} role="tab" aria-selected={active === index}><span>{item.number}</span><strong>{item.title}</strong><ArrowUpRight size={17} /></button>)}</div><div className={`exploration-detail tone-${current.tone}`}><span className="detail-tag">{current.tag} / 0{active + 1}</span><div className="detail-visual"><div className="detail-lines" /><b>{active === 0 ? 'AI' : active === 1 ? 'ML' : active === 2 ? 'AUTO' : 'UI'}</b><span className="detail-pulse" /></div><h3>{current.title}</h3><p>{current.text}</p></div></div></section>
+      <section className={styles.explorations}>
+        <div className={styles.sectionHeading}><div><p className={styles.sectionLabel}>/ 02 — What we&apos;re exploring</p><h2>Ideas become clearer<br /><em>when they are tested.</em></h2></div><p>Select an area to see the question behind it.</p></div>
+        <div className={styles.explorationLayout}>
+          <div className={styles.explorationList} role="tablist" aria-label="Areas of exploration">{explorations.map((item, index) => <button key={item.number} id={`exploration-tab-${index}`} type="button" role="tab" aria-selected={active === index} aria-controls={`exploration-panel-${index}`} tabIndex={active === index ? 0 : -1} className={active === index ? styles.explorationActive : ''} onClick={() => setActive(index)}><span>{item.number}</span><strong>{item.title}</strong><ArrowUpRight size={16} aria-hidden="true" /></button>)}</div>
+          <div id={`exploration-panel-${active}`} className={styles.explorationDetail} role="tabpanel" tabIndex={0} aria-labelledby={`exploration-tab-${active}`}><div className={styles.detailTop}><span>{current.tag}</span><span>Question 0{active + 1}</span></div><h3>{current.question}</h3><p>{current.text}</p><div className={styles.detailRule}><span>Working question</span><span>Keep learning</span></div></div>
+        </div>
+      </section>
 
-      <section className="lab-experiments section-pad" id="experiments"><div className="section-heading"><p className="section-kicker">Active experiments</p><p>Unfinished by design.<br />Honest about the stage.</p></div><div className="experiment-feature"><div className="experiment-feature-visual"><span>01 / SIGNAL</span><div className="signal-field"><i /><i /><i /><i /><i /></div><strong>STRUCTURE<br /><em>→</em> EXPERIENCE</strong></div><div className="experiment-feature-copy"><span className="section-kicker">Featured experiment</span><h2>Intelligent<br /><em>web generation.</em></h2><p>Exploring how AI can transform structured user requirements into functional digital experiences, without losing the thinking behind the work.</p><dl><div><dt>STAGE</dt><dd>Research</dd></div><div><dt>FOCUS</dt><dd>AI systems / Products</dd></div></dl></div></div><div className="experiment-list">{experiments.slice(1).map((item) => <article className="experiment-row" key={item.number}><span>{item.number}</span><div><small>{item.category}</small><h3>{item.title}</h3><p>{item.description}</p></div><div className="experiment-status">{item.status}<ArrowUpRight size={16} /></div></article>)}</div></section>
+      <section className={styles.experiments} id="experiments">
+        <div className={styles.sectionHeading}><div><p className={styles.sectionLabel}>/ 03 — Active experiments</p><h2>Unfinished by design.<br /><em>Honest about the stage.</em></h2></div><p>Work that stays close to evidence.</p></div>
+        <div className={styles.featuredExperiment}><div className={styles.experimentVisual}><span>Experiment / 01</span><div className={styles.experimentSignal}><i /><i /><i /><i /></div><strong>Structure<br /><em>→</em> experience</strong></div><div className={styles.experimentCopy}><span>Featured experiment</span><h3>Intelligent<br /><em>web generation.</em></h3><p>Exploring how AI can transform structured user requirements into functional digital experiences, without losing the thinking behind the work.</p><dl><div><dt>Stage</dt><dd>Research</dd></div><div><dt>Focus</dt><dd>AI systems / products</dd></div></dl></div></div>
+        <div className={styles.experimentList}>{experiments.slice(1).map((item) => <article key={item.number}><span>{item.number}</span><div><small>{item.category}</small><h3>{item.title}</h3><p>{item.description}</p></div><div className={styles.experimentStatus}>{item.status}<ArrowUpRight size={16} aria-hidden="true" /></div></article>)}</div>
+      </section>
 
-      <section className="lab-pipeline section-pad"><div className="section-heading"><p className="section-kicker">The AI development pipeline</p><p>Curiosity is useful.<br />Evidence is better.</p></div><div className="pipeline"><div className="pipeline-line" />{pipeline.map(([number, title, caption]) => <div className="pipeline-step" key={number}><span>{number}</span><i /><h3>{title}</h3><p>{caption}</p></div>)}</div></section>
+      <section className={styles.pipeline}><div className={styles.sectionHeading}><div><p className={styles.sectionLabel}>/ 04 — The development loop</p><h2>Curiosity is useful.<br /><em>Evidence is better.</em></h2></div><p>Keep the question visible.</p></div><div className={styles.pipelineList}>{pipeline.map(([number, title, caption]) => <div key={number}><span>{number}</span><h3>{title}</h3><p>{caption}</p></div>)}</div></section>
 
-      <section className="lab-building section-pad"><div><p className="section-kicker">Research → product</p><h2>Not every idea<br /><em>needs to ship.</em></h2></div><div className="building-flow">{['Question', 'Research', 'Experiment', 'Prototype', 'Product'].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong>{index < 4 && <ArrowUpRight size={15} />}</div>)}</div><p className="building-note">The Lab gives ideas room to become clear. When an experiment proves useful, we give it the engineering discipline to become real.</p></section>
+      <section className={styles.building}><div><p className={styles.sectionLabel}>/ 05 — Research to product</p><h2>Not every idea<br /><em>needs to ship.</em></h2></div><div className={styles.buildingFlow}>{['Question', 'Research', 'Experiment', 'Prototype', 'Product'].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong>{index < 4 && <ArrowUpRight size={15} aria-hidden="true" />}</div>)}</div><p className={styles.buildingNote}>The Lab gives ideas room to become clear. When an experiment proves useful, we give it the engineering discipline to become real.</p></section>
 
-      <section className="lab-context section-pad"><div className="context-copy"><p className="section-kicker">A perspective from Africa</p><h2>Local context.<br /><span>Global possibility.</span></h2><p>Technology built from Africa can solve local problems while being designed for a global future. We are interested in the practical details: access, language, infrastructure, and the people who use what we build.</p></div><div className="context-visual"><div className="context-ring ring-one" /><div className="context-ring ring-two" /><div className="context-ring ring-three" /><i /><i /><i /><span>BUILD / WHERE<br />THE PROBLEM IS</span></div></section>
+      <section className={styles.context}><div><p className={styles.sectionLabel}>/ 06 — A perspective from Africa</p><h2>Local context.<br /><em>Global possibility.</em></h2><p>Technology built from Africa can solve local problems while being designed for a global future. We are interested in the practical details: access, language, infrastructure, and the people who use what we build.</p></div><div className={styles.contextPanel}><div><span>Context</span><span>Access / language / infrastructure</span></div><strong>Build where<br />the problem is.</strong><small>Vexel Labs / perspective</small></div></section>
 
-      <section className="lab-philosophy section-pad"><p className="section-kicker">Lab philosophy</p><div className="philosophy-list">{['Build to understand.', 'Experiment before assuming.', 'Measure what matters.', 'Turn research into useful systems.'].map((item, index) => <div key={item}><span>0{index + 1}</span><h3>{item}</h3><Check size={18} /></div>)}</div></section>
+      <section className={styles.philosophy}><p className={styles.sectionLabel}>/ 07 — Lab philosophy</p><div>{philosophy.map((item, index) => <div key={item}><span>0{index + 1}</span><h3>{item}</h3><Check size={18} aria-hidden="true" /></div>)}</div></section>
 
-      <section className="lab-cta section-pad"><p className="eyebrow"><span className="eyebrow-dot" /> Start with a question</p><h2>Have an idea<br /><em>worth exploring?</em></h2><p>Let&apos;s build the experiment.</p><div className="hero-actions"><a className="button button-primary" href="/contact">Start a project <ArrowUpRight size={16} /></a><a className="text-link" href="/contact">Contact Vexel <ArrowUpRight size={16} /></a></div></section>
-
-      <section className="signature section-pad"><div className="signature-word">VEXEL</div><div className="signature-bottom"><span>Idea → Experiment → Product</span><span>Vexel Lab / 001</span></div></section><footer className="footer section-pad"><div className="footer-top"><a className="brand" href="/"><span className="brand-mark"><span /><span /><span /></span><span>Vexel<span className="brand-muted"> Labs</span></span></a><p>Technology, built<br />with intent.</p></div><div className="footer-bottom"><span>© 2025 Vexel Labs</span><div className="footer-links"><a href="/about">About</a><a href="/services">Services</a><a href="/work">Work</a><a href="/contact">Contact</a></div></div></footer>
+      <section className={styles.cta}><p className={styles.eyebrow}><span aria-hidden="true" /> Start with a question</p><h2>Have an idea<br /><em>worth exploring?</em></h2><p>Let&apos;s build the experiment.</p><SiteButton href="/contact" variant="light">Start a project</SiteButton></section>
+      <SiteFooter />
     </main>
   )
 }
