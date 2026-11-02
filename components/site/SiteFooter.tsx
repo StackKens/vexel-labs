@@ -85,7 +85,7 @@ export function SiteFooter() {
 
         <div className={styles.bottom}>
           <p>© {new Date().getFullYear()} VexelLabs. All rights reserved.</p>
-          <p className={styles.location}>Lagos, Nigeria / Working globally</p>
+          <p className={styles.location}>Kampala, Uganda / Working globally</p>
           <a className={styles.topLink} href="#top">
             Back to top
             <ArrowUpRight size={13} aria-hidden="true" />

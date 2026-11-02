@@ -1,10 +1,10 @@
 .frame {
   width: 100%;
   overflow: hidden;
-  border: 1px solid #2a3448;
-  border-radius: 6px;
+  border: 0;
+  border-radius: 16px;
   background: #0a0f19;
-  box-shadow: 0 40px 90px -50px rgb(0 0 0 / 75%);
+  box-shadow: none;
   container-type: inline-size;
   --ai-bg: #0a0f19;
   --ai-raised: #111a28;

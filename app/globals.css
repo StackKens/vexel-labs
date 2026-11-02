@@ -27,7 +27,7 @@
   --font-display: var(--font-geist), 'Helvetica Neue', Arial, sans-serif;
   --font-body: var(--font-manrope), 'Helvetica Neue', Arial, sans-serif;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 *,
@@ -38,7 +38,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--bg);
+  background: #ffffff;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -46,8 +46,8 @@ body {
   min-width: 320px;
   margin: 0;
   overflow-x: clip;
-  background: var(--bg);
-  color: var(--text);
+  background: #ffffff;
+  color: #0b1220;
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.55;

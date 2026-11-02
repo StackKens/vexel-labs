@@ -199,7 +199,7 @@ export function SiteHeader() {
           <div>
             <span>Get in touch</span>
             <a href="mailto:hello@vexellabs.com">hello@vexellabs.com</a>
-            <p>Lagos, Nigeria / Working globally</p>
+            <p>Kampala, Uganda / Working globally</p>
           </div>
         </div>
       </div>

@@ -83,7 +83,7 @@ export default function HomePage() {
           </h2>
           <div className={styles.copy}>
             <p>
-              Founded in Lagos. Building intelligent products and digital systems for a wider world.
+              Founded in Kampala. Building intelligent products and digital systems for a wider world.
             </p>
             <Link className={styles.textLink} href="/about">
               About VexelLabs <ArrowUpRight size={14} aria-hidden="true" />

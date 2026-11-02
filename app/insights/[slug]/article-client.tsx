@@ -1,14 +1,9 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { SiteHeader } from '@/components/site/SiteHeader'
-import { SiteFooter } from '@/components/site/SiteFooter'
-import { ArticleCover } from '@/components/visuals/ArticleCover'
+import { PageShell } from '@/components/site/PageShell'
 import { formatDate } from '@/lib/format-date'
 import type { Article, ArticleSummary } from '@/lib/insights-data'
-import styles from './article.module.css'
+import styles from '@/components/site/editorial.module.css'
 
 type ArticleClientProps = {
   article: Article
@@ -61,46 +56,11 @@ function renderBlock(block: string, index: number) {
 }
 
 export default function ArticleClient({ article, related }: ArticleClientProps) {
-  const [readingProgress, setReadingProgress] = useState(0)
-
-  useEffect(() => {
-    let frame = 0
-    const updateProgress = () => {
-      const scrollable =
-        document.documentElement.scrollHeight - document.documentElement.clientHeight
-      setReadingProgress(
-        scrollable > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100)) : 0
-      )
-    }
-    const onScroll = () => {
-      cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(updateProgress)
-    }
-
-    updateProgress()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', onScroll)
-    }
-  }, [])
-
   return (
-    <main className={styles.page} id="top">
-      <div
-        className={styles.progress}
-        style={{ width: `${readingProgress}%` }}
-        role="progressbar"
-        aria-label="Reading progress"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={Math.round(readingProgress)}
-      />
-      <SiteHeader />
-
-      <header className={styles.hero}>
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.kicker}>
+    <PageShell>
+      <header className={styles.articleHeader}>
+        <div className={styles.articleHeaderInner}>
+          <div className={styles.articleMeta}>
             <Link href="/insights">Insights</Link>
             <span>{article.category}</span>
             <span>{article.readingTime} min read</span>
@@ -115,73 +75,39 @@ export default function ArticleClient({ article, related }: ArticleClientProps) 
             <time dateTime={article.publishedDate}>{formatDate(article.publishedDate)}</time>
           </div>
         </div>
-
-        <div className={`container ${styles.cover}`}>
-          <ArticleCover category={article.category} seed={article.slug} />
-        </div>
       </header>
 
-      <section className={`${styles.body} theme-light`}>
-        <div className={`container ${styles.bodyGrid}`}>
-          <aside className={styles.rail}>
-            <div>
-              <span>Written by</span>
-              <strong>{article.author.name}</strong>
-              <p>{article.author.role}</p>
-            </div>
-            <div>
-              <span>Published</span>
-              <strong>
-                <time dateTime={article.publishedDate}>{formatDate(article.publishedDate)}</time>
-              </strong>
-            </div>
-            <div>
-              <span>Reading time</span>
-              <strong>{article.readingTime} minutes</strong>
-            </div>
-            {article.tags && article.tags.length > 0 && (
-              <div>
-                <span>Topics</span>
-                <ul className={styles.tags}>
-                  {article.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </aside>
-
-          <article className={`${styles.content} prose`}>
-            {article.content.split('\n\n').map(renderBlock)}
-          </article>
-        </div>
+      <section className={styles.section}>
+        <article className={styles.prose}>
+          {article.content.split('\n\n').map(renderBlock)}
+        </article>
       </section>
 
       {related.length > 0 && (
-        <section className={`${styles.related} theme-light`}>
-          <div className="container">
-            <div className={styles.relatedHead}>
+        <section className={styles.alt}>
+          <div className={styles.altInner}>
+            <div className={styles.sectionHead}>
               <div>
-                <p className="eyebrow">Continue reading</p>
-                <h2 className="display-sm">More from the archive.</h2>
+                <p className={styles.kicker}>Continue reading</p>
+                <h2 className={styles.h2}>More from the archive.</h2>
               </div>
-              <Link className="text-link" href="/insights">
+              <Link className={styles.textLink} href="/insights">
                 All insights <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
             </div>
 
-            <div className={styles.relatedGrid}>
+            <div className={styles.grid3}>
               {related.map((item) => (
                 <article key={item.slug}>
-                  <div className={styles.relatedMeta}>
+                  <div className={styles.articleMeta}>
                     <span>{item.category}</span>
                     <span>{item.readingTime} min read</span>
                   </div>
-                  <h3>
+                  <h3 className={styles.subhead}>
                     <Link href={`/insights/${item.slug}`}>{item.title}</Link>
                   </h3>
-                  <p>{item.excerpt}</p>
-                  <Link className={styles.relatedLink} href={`/insights/${item.slug}`}>
+                  <p className={styles.featuredExcerpt}>{item.excerpt}</p>
+                  <Link className={styles.textLink} href={`/insights/${item.slug}`}>
                     Read the note <ArrowUpRight size={14} aria-hidden="true" />
                   </Link>
                 </article>
@@ -192,24 +118,19 @@ export default function ArticleClient({ article, related }: ArticleClientProps) 
       )}
 
       <section className={styles.cta}>
-        <div className={`container ${styles.ctaInner}`}>
-          <div>
-            <p className="eyebrow">Work with us</p>
-            <h2 className="display">A problem worth thinking through.</h2>
-          </div>
+        <div className={styles.ctaInner}>
+          <h2 className={styles.h2}>A problem worth thinking through.</h2>
           <div className={styles.ctaActions}>
             <p>
               If the questions in this note overlap with something you are building, we would like
               to hear about it.
             </p>
-            <Link className="text-link" href="/contact">
+            <Link className={styles.textLink} href="/contact">
               Contact our team <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>
       </section>
-
-      <SiteFooter />
-    </main>
+    </PageShell>
   )
 }

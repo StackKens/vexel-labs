@@ -31,7 +31,7 @@
 }
 
 .primary:hover {
-  background: #3a6ae8;
+  background: var(--accent-hover, #3a6ae8);
 }
 
 .outline {

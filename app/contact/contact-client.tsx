@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDownRight, ArrowUpRight, Check } from 'lucide-react'
-import { SiteHeader } from '@/components/site/SiteHeader'
-import { SiteFooter } from '@/components/site/SiteFooter'
-import styles from './contact.module.css'
+import { ArrowUpRight, Check } from 'lucide-react'
+import { PageShell } from '@/components/site/PageShell'
+import { SiteButton } from '@/components/site/SiteButton'
+import styles from '@/components/site/editorial.module.css'
 
 const inquiryTypes = [
   'Product engineering',
@@ -14,8 +14,6 @@ const inquiryTypes = [
   'Research collaboration',
   'Other',
 ]
-
-const timelines = ['As soon as possible', 'Within 1 month', '1–3 months', '3–6 months', 'Flexible']
 
 type FormStatus =
   | { state: 'idle' }
@@ -60,92 +58,48 @@ export default function ContactClient() {
   }
 
   return (
-    <main id="top">
-      <SiteHeader />
-
+    <PageShell>
       <section className={styles.hero}>
-        <div className={`container ${styles.heroGrid}`}>
-          <div className={styles.heroCopy}>
-            <p className="eyebrow rise">Contact / VexelLabs</p>
-            <h1 className={`${styles.heroTitle} rise rise-delay-1`}>Start with the problem.</h1>
-            <p className={`${styles.heroLede} rise rise-delay-2`}>
-              Have a product, system or problem in mind? Start with the context. We will help you
-              find the right way forward.
-            </p>
-            <a className={`text-link ${styles.heroLink} rise rise-delay-3`} href="#inquiry">
-              Tell us about it <ArrowDownRight size={14} aria-hidden="true" />
-            </a>
-          </div>
-
-          <aside className={`${styles.briefPanel} rise rise-delay-2`} aria-label="What to include in an inquiry">
-            <div className={styles.panelHead}>
-              <span>Start with the context</span>
-              <span>VXL / 007</span>
-            </div>
-            <div className={styles.briefRows}>
-              <div>
-                <span>01</span>
-                <div>
-                  <strong>The problem</strong>
-                  <p>What is not working as it should?</p>
-                </div>
-              </div>
-              <div>
-                <span>02</span>
-                <div>
-                  <strong>The people</strong>
-                  <p>Who needs the outcome, and who will use it?</p>
-                </div>
-              </div>
-              <div>
-                <span>03</span>
-                <div>
-                  <strong>The constraints</strong>
-                  <p>What must the solution work within?</p>
-                </div>
-              </div>
-            </div>
-            <div className={styles.panelFoot}>Context / question / next step</div>
-          </aside>
-        </div>
+        <p className={styles.kicker}>Contact</p>
+        <h1 className={styles.title}>Start with the problem.</h1>
+        <p className={styles.lede}>
+          Have a product, system or problem in mind? Start with the context. We will help you find
+          the right way forward.
+        </p>
       </section>
 
-      <section className={`${styles.inquiry} theme-light`} id="inquiry">
-        <div className={`container ${styles.inquiryGrid}`}>
-          <div className={styles.inquiryIntro}>
-            <p className="eyebrow">Start here</p>
-            <h2 className="display">Give us the first signal.</h2>
-            <p className="lede">
-              You do not need to know exactly what technology you need. Tell us what you are trying
-              to solve and we will think through the right direction with you.
-            </p>
+      <section className={styles.section} id="inquiry">
+        <div className={styles.split}>
+          <div>
+            <p className={styles.kicker}>Start here</p>
+            <h2 className={`${styles.h2} ${styles.rowsSpaced}`}>Give us the first signal.</h2>
             <div className={styles.directEmail}>
               <span>Prefer email?</span>
               <a href="mailto:hello@vexellabs.com">
                 hello@vexellabs.com <ArrowUpRight size={14} aria-hidden="true" />
               </a>
             </div>
-            <div className={styles.location}>
+            <div className={styles.directEmail}>
               <span>Based in</span>
-              <p>Lagos, Nigeria / Working globally</p>
+              <p>Kampala, Uganda / Working globally</p>
             </div>
           </div>
 
-          <div className={styles.formWrap}>
-            {status.state === 'ready' ? (
-              <div className={styles.success} role="status" aria-live="polite">
-                <span className={styles.successIcon}>
-                  <Check size={22} aria-hidden="true" />
-                </span>
-                <p className="eyebrow">Email draft ready</p>
-                <h3>Your message is prepared.</h3>
-                <p>
-                  Open the draft in your email app, review it and send it to us. If your app did not
-                  open, email <a href="mailto:hello@vexellabs.com">hello@vexellabs.com</a> directly.
-                </p>
-                <a className={styles.primaryButton} href={status.mailto}>
-                  Open email draft <ArrowUpRight size={15} aria-hidden="true" />
-                </a>
+          {status.state === 'ready' ? (
+            <div className={styles.success} role="status" aria-live="polite">
+              <span className={styles.successIcon}>
+                <Check size={22} aria-hidden="true" />
+              </span>
+              <p className={styles.kicker}>Email draft ready</p>
+              <h3>Your message is prepared.</h3>
+              <p>
+                Open the draft in your email app, review it and send it to us. If your app did not
+                open, email <a href="mailto:hello@vexellabs.com">hello@vexellabs.com</a> directly.
+              </p>
+              <div className={styles.successActions}>
+                <SiteButton href={status.mailto} external>
+                  Open email draft
+                </SiteButton>
                 <button
                   type="button"
                   className={styles.resetButton}
@@ -154,148 +108,66 @@ export default function ContactClient() {
                   Edit the inquiry
                 </button>
               </div>
-            ) : (
-              <form className={styles.form} onSubmit={handleSubmit} noValidate>
-                <fieldset>
-                  <legend>About you</legend>
-                  <div className={styles.formGrid}>
-                    <label htmlFor="name">
-                      Name *
-                      <input id="name" name="name" required autoComplete="name" />
-                    </label>
-                    <label htmlFor="email">
-                      Email *
-                      <input id="email" name="email" type="email" required autoComplete="email" />
-                    </label>
-                    <label htmlFor="phone">
-                      Phone / WhatsApp
-                      <input id="phone" name="phone" type="tel" autoComplete="tel" />
-                    </label>
-                    <label htmlFor="company">
-                      Company / organization
-                      <input id="company" name="company" autoComplete="organization" />
-                    </label>
-                  </div>
-                </fieldset>
+            </div>
+          ) : (
+            <form className={styles.form} onSubmit={handleSubmit} noValidate>
+              <div className={styles.formRow}>
+                <label className={styles.field} htmlFor="name">
+                  Name *
+                  <input className={styles.input} id="name" name="name" required autoComplete="name" />
+                </label>
+                <label className={styles.field} htmlFor="email">
+                  Email *
+                  <input
+                    className={styles.input}
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                  />
+                </label>
+              </div>
 
-                <fieldset>
-                  <legend>Your project</legend>
-                  <label htmlFor="type">
-                    What are you looking to build? *
-                    <select id="type" name="type" defaultValue="" required>
-                      <option value="" disabled>
-                        Select a direction
-                      </option>
-                      {inquiryTypes.map((type) => (
-                        <option key={type}>{type}</option>
-                      ))}
-                    </select>
-                  </label>
-                  <label htmlFor="message">
-                    Tell us a little about it *
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      placeholder="What are you trying to make, improve or automate?"
-                    />
-                  </label>
-                </fieldset>
+              <label className={styles.field} htmlFor="type">
+                What are you looking to build? *
+                <select className={styles.select} id="type" name="type" defaultValue="" required>
+                  <option value="" disabled>
+                    Select a direction
+                  </option>
+                  {inquiryTypes.map((type) => (
+                    <option key={type}>{type}</option>
+                  ))}
+                </select>
+              </label>
 
-                <fieldset>
-                  <legend>
-                    Project context <span>Optional</span>
-                  </legend>
-                  <div className={styles.formGrid}>
-                    <label htmlFor="timeline">
-                      Timeline
-                      <select id="timeline" name="timeline" defaultValue="">
-                        <option value="">Choose a timeline</option>
-                        {timelines.map((item) => (
-                          <option key={item}>{item}</option>
-                        ))}
-                      </select>
-                    </label>
-                    <label htmlFor="budget">
-                      Budget range
-                      <select id="budget" name="budget" defaultValue="">
-                        <option value="">Not sure yet</option>
-                        <option>Under $5k</option>
-                        <option>$5k – $15k</option>
-                        <option>$15k – $50k</option>
-                        <option>$50k+</option>
-                        <option>Prefer to discuss</option>
-                      </select>
-                    </label>
-                  </div>
-                </fieldset>
+              <label className={styles.field} htmlFor="message">
+                Tell us a little about it *
+                <textarea
+                  className={styles.textarea}
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  placeholder="What are you trying to make, improve or automate?"
+                />
+              </label>
 
-                {status.state === 'error' && (
-                  <p className={styles.formError} role="alert">
-                    {status.message}
-                  </p>
-                )}
+              {status.state === 'error' && (
+                <p className={styles.formError} role="alert">
+                  {status.message}
+                </p>
+              )}
 
+              <div className={styles.formActions}>
                 <button className={styles.primaryButton} type="submit">
                   Prepare email draft <ArrowUpRight size={15} aria-hidden="true" />
                 </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.process}>
-        <div className="container">
-          <div className={styles.processHead}>
-            <div>
-              <p className="eyebrow">What happens next</p>
-              <h2 className="display">From first signal to next step.</h2>
-            </div>
-            <p className="lede">
-              No long intake process. We start by understanding whether the problem is one we can
-              help with.
-            </p>
-          </div>
-
-          <div className={styles.processGrid}>
-            {[
-              ['01', 'You reach out', 'Tell us what you are trying to build.'],
-              ['02', 'We review', 'We understand the problem and the context.'],
-              ['03', 'We talk', 'We discuss scope, direction and possible approaches.'],
-              ['04', 'We build', 'If it is a good fit, we move into planning and making.'],
-            ].map(([number, title, text]) => (
-              <div key={number}>
-                <span>{number}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
               </div>
-            ))}
-          </div>
+            </form>
+          )}
         </div>
       </section>
-
-      <section className={`${styles.cta} theme-light`}>
-        <div className={`container ${styles.ctaInner}`}>
-          <div>
-            <p className="eyebrow">The first step</p>
-            <h2 className="display">Have a problem worth solving?</h2>
-          </div>
-          <div className={styles.ctaActions}>
-            <p>Send us a note, or write to us directly.</p>
-            <a className={styles.bigEmail} href="mailto:hello@vexellabs.com">
-              hello@vexellabs.com
-              <ArrowUpRight size={22} aria-hidden="true" />
-            </a>
-            <a className="text-link" href="#inquiry">
-              Start a conversation <ArrowUpRight size={14} aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <SiteFooter />
-    </main>
+    </PageShell>
   )
 }

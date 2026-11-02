@@ -11,8 +11,8 @@ export default function GlobalError({
       <body
         style={{
           margin: 0,
-          background: '#080d16',
-          color: '#f5f6f8',
+          background: '#ffffff',
+          color: '#0b1220',
           fontFamily: 'Arial, Helvetica, sans-serif',
         }}
       >
@@ -27,7 +27,7 @@ export default function GlobalError({
         >
           <p
             style={{
-              color: '#6f7c8e',
+              color: '#8f8f8f',
               fontSize: '0.68rem',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
@@ -47,7 +47,7 @@ export default function GlobalError({
           >
             This view needs another pass.
           </h1>
-          <p style={{ maxWidth: '30rem', color: '#a4afbe', lineHeight: 1.6 }}>
+          <p style={{ maxWidth: '30rem', color: '#5f6368', lineHeight: 1.6 }}>
             Try the request again, or return to the homepage.
           </p>
           <button
@@ -58,7 +58,7 @@ export default function GlobalError({
               padding: '0.8rem 1.1rem',
               border: 0,
               borderRadius: '999px',
-              background: '#477bff',
+              background: '#0b1220',
               color: '#fff',
               fontSize: '0.82rem',
               cursor: 'pointer',
