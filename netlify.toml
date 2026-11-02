@@ -1,0 +1,7 @@
+[build]
+  command = "pnpm install --frozen-lockfile && pnpm build"
+  publish = "out"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  NODE_VERSION = "24.22.1"
