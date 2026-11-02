@@ -8,14 +8,20 @@ type Props = { params: Promise<{ slug: string }> }
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return getAllJobs().map((job) => ({ slug: job.slug }))
+  const jobs = getAllJobs()
+  return jobs.length > 0 ? jobs.map((job) => ({ slug: job.slug })) : [{ slug: 'no-open-roles' }]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const job = getJobBySlug(slug)
 
-  if (!job) return { title: 'Role not found' }
+  if (!job) {
+    return {
+      title: 'Role not found',
+      robots: { index: false, follow: false },
+    }
+  }
 
   return {
     title: job.title,
