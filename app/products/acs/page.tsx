@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { PageShell } from '@/components/site/PageShell'
 import { SiteButton } from '@/components/site/SiteButton'
 import { AcsScreenshot } from '@/components/visuals/AcsScreenshot'
+import { ACS_PLATFORM_URL } from '@/lib/links'
 import styles from '@/components/site/editorial.module.css'
 
 export const metadata: Metadata = {
@@ -84,9 +85,11 @@ export default function AcsPage() {
           and reporting in one dependable system.
         </p>
         <div className={styles.actions}>
-          <SiteButton href="/contact">Request a walkthrough</SiteButton>
-          <SiteButton href="#modules" variant="outline">
-            See what it handles
+          <SiteButton href={ACS_PLATFORM_URL} external>
+            Open ACS platform
+          </SiteButton>
+          <SiteButton href="/contact" variant="outline">
+            Request a walkthrough
           </SiteButton>
         </div>
         <div className={styles.heroMedia}>

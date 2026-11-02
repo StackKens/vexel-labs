@@ -1,14 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { LucideIcon } from 'lucide-react'
 import {
   AlertCircle,
+  ArrowUpRight,
   BarChart3,
   Bell,
   BookOpen,
   CalendarCheck,
   CalendarRange,
+  ChevronDown,
+  ChevronUp,
   ClipboardCheck,
   CreditCard,
   FileCheck,
@@ -18,7 +21,9 @@ import {
   LayoutDashboard,
   Megaphone,
   Menu,
+  Monitor,
   School,
+  Smartphone,
   Sparkles,
   TrendingUp,
   UserCheck,
@@ -28,20 +33,23 @@ import {
   Wallet,
   X,
 } from 'lucide-react'
+import { ACS_PLATFORM_URL } from '@/lib/links'
+import { AcsMobileDashboard } from './AcsMobileDashboard'
 import styles from './acs-screenshot.module.css'
 
 type NavItem = {
   icon: LucideIcon
   label: string
-  active?: boolean
   ai?: boolean
 }
+
+type RangeKey = 'week' | 'month' | 'term'
 
 const navGroups: { label: string; items: NavItem[] }[] = [
   {
     label: 'Main',
     items: [
-      { icon: LayoutDashboard, label: 'Dashboard', active: true },
+      { icon: LayoutDashboard, label: 'Dashboard' },
       { icon: Sparkles, label: 'AI', ai: true },
     ],
   },
@@ -118,18 +126,26 @@ const summary = [
   },
 ]
 
-const attendance = [
-  { day: 'Mon', value: 93 },
-  { day: 'Tue', value: 94 },
-  { day: 'Wed', value: 92 },
-  { day: 'Thu', value: 95 },
-  { day: 'Fri', value: 94 },
-  { day: 'Mon', value: 96 },
-  { day: 'Tue', value: 95 },
-  { day: 'Wed', value: 97 },
-  { day: 'Thu', value: 94 },
-  { day: 'Fri', value: 92 },
-]
+const rangeLabels: Record<RangeKey, string> = {
+  week: 'This week',
+  month: 'This month',
+  term: 'This term',
+}
+
+const attendanceRanges: Record<RangeKey, { labels: string[]; values: number[] }> = {
+  week: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    values: [93, 94, 92, 95, 94, 96, 95, 97, 94, 92],
+  },
+  month: {
+    labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
+    values: [92, 93, 94, 93, 95, 96, 95, 94, 96, 95],
+  },
+  term: {
+    labels: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    values: [91, 92, 93, 94, 94, 95, 96, 95, 96, 97],
+  },
+}
 
 const enrolment = [
   { name: 'Primary 1', value: 96 },
@@ -171,25 +187,111 @@ const maxEnrolment = Math.max(...enrolment.map((item) => item.value))
 
 export function AcsScreenshot({ className = '' }: { className?: string }) {
   const [navOpen, setNavOpen] = useState(false)
+  const [expanded, setExpanded] = useState(false)
+  const [device, setDevice] = useState<'desktop' | 'phone'>('desktop')
+  const [activeNav, setActiveNav] = useState('Dashboard')
+  const [range, setRange] = useState<RangeKey>('week')
+  const [activeAction, setActiveAction] = useState('')
+
+  useEffect(() => {
+    if (device === 'phone') {
+      setExpanded(true)
+    }
+  }, [device])
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 1000px)')
+    const expandOnMobile = () => {
+      if (mobileQuery.matches) {
+        setExpanded(true)
+      }
+    }
+
+    expandOnMobile()
+    mobileQuery.addEventListener('change', expandOnMobile)
+
+    return () => mobileQuery.removeEventListener('change', expandOnMobile)
+  }, [])
+
+  const attendance = attendanceRanges[range]
+  const activeNavItem = navGroups
+    .flatMap((group) => group.items)
+    .find((item) => item.label === activeNav)
+  const ActiveNavIcon = activeNavItem?.icon ?? LayoutDashboard
 
   return (
-    <div
-      className={`${styles.frame} ${className}`}
-      role="group"
-      aria-label="ACS school management dashboard preview"
-    >
-      <div className={styles.chrome} aria-hidden="true">
-        <span className={styles.dots}>
+    <div className={`${styles.preview} ${className}`}>
+      <div className={styles.previewBar}>
+        <span className={styles.previewStatus}>
           <i />
-          <i />
-          <i />
+          Interactive preview
         </span>
-        <span className={styles.url}>
-          <span className={styles.lock} />
-          app.acs.vexellabs.com
-        </span>
-        <span className={styles.chromeLabel}>ACS</span>
+        <div className={styles.previewTools}>
+          <div className={styles.deviceSwitch} role="group" aria-label="Preview device">
+            <button
+              type="button"
+              className={device === 'desktop' ? styles.deviceActive : ''}
+              onClick={() => setDevice('desktop')}
+              aria-pressed={device === 'desktop'}
+            >
+              <Monitor size={13} aria-hidden="true" />
+              Desktop
+            </button>
+            <button
+              type="button"
+              className={device === 'phone' ? styles.deviceActive : ''}
+              onClick={() => setDevice('phone')}
+              aria-pressed={device === 'phone'}
+            >
+              <Smartphone size={13} aria-hidden="true" />
+              Phone
+            </button>
+          </div>
+          <a
+            className={styles.liveLink}
+            href={ACS_PLATFORM_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open live platform
+            <ArrowUpRight size={13} aria-hidden="true" />
+          </a>
+        </div>
       </div>
+
+      <div
+        id="acs-demo-viewport"
+        className={`${styles.viewport} ${expanded ? styles.viewportExpanded : ''} ${
+          device === 'phone' ? styles.phoneViewport : ''
+        }`}
+      >
+        <div className={styles.desktopPanel}>
+          <div
+            className={styles.frame}
+            role="group"
+            aria-label="ACS school management dashboard preview"
+          >
+            <div className={styles.chrome}>
+            <span className={styles.dots} aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <a
+              className={styles.url}
+              href={ACS_PLATFORM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open the live ACS platform"
+            >
+              <span className={styles.lock} aria-hidden="true" />
+              acs-website.onrender.com
+              <ArrowUpRight size={10} aria-hidden="true" />
+            </a>
+            <span className={styles.chromeLabel} aria-hidden="true">
+              ACS
+            </span>
+          </div>
 
       <div className={styles.app}>
         <button
@@ -220,15 +322,21 @@ export function AcsScreenshot({ className = '' }: { className?: string }) {
                   {group.items.map((item) => {
                     const Icon = item.icon
                     return (
-                      <span
+                      <button
                         key={item.label}
-                        className={`${styles.navItem} ${item.active ? styles.navActive : ''} ${
-                          item.ai ? styles.navAi : ''
-                        }`}
+                        type="button"
+                        className={`${styles.navItem} ${
+                          activeNav === item.label ? styles.navActive : ''
+                        } ${item.ai ? styles.navAi : ''}`}
+                        onClick={() => {
+                          setActiveNav(item.label)
+                          setNavOpen(false)
+                        }}
+                        aria-pressed={activeNav === item.label}
                       >
                         <Icon size={13} strokeWidth={1.7} />
                         <span>{item.label}</span>
-                      </span>
+                      </button>
                     )
                   })}
                 </div>
@@ -275,8 +383,9 @@ export function AcsScreenshot({ className = '' }: { className?: string }) {
             </div>
           </header>
 
-          <div className={styles.content}>
-            <div className={styles.dashboardHeader}>
+          {activeNav === 'Dashboard' ? (
+            <div className={styles.content}>
+              <div className={styles.dashboardHeader}>
               <div>
                 <h2>Good afternoon, Alex</h2>
                 <p>Here&apos;s the latest across your school.</p>
@@ -315,9 +424,17 @@ export function AcsScreenshot({ className = '' }: { className?: string }) {
                   <span>Daily attendance across all classes</span>
                 </div>
                 <div className={styles.filters}>
-                  <span className={styles.filterActive}>This week</span>
-                  <span>This month</span>
-                  <span>This term</span>
+                  {(Object.keys(rangeLabels) as RangeKey[]).map((key) => (
+                    <button
+                      key={key}
+                      type="button"
+                      className={range === key ? styles.filterActive : ''}
+                      onClick={() => setRange(key)}
+                      aria-pressed={range === key}
+                    >
+                      {rangeLabels[key]}
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -339,19 +456,21 @@ export function AcsScreenshot({ className = '' }: { className?: string }) {
                   </div>
                   <span className={styles.targetLine} />
                   <div className={styles.bars}>
-                    {attendance.map((point, index) => (
+                    {attendance.values.map((value, index) => (
                       <span
-                        key={`${point.day}-${index}`}
-                        className={`${styles.bar} ${index === attendance.length - 2 ? styles.barActive : ''}`}
-                        style={{ height: `${((point.value - 80) / 20) * 100}%` }}
+                        key={`${attendance.labels[index]}-${index}`}
+                        className={`${styles.bar} ${
+                          index === attendance.values.length - 2 ? styles.barActive : ''
+                        }`}
+                        style={{ height: `${((value - 80) / 20) * 100}%` }}
                       />
                     ))}
                   </div>
                 </div>
               </div>
               <div className={styles.xAxis}>
-                {attendance.map((point, index) => (
-                  <span key={`${point.day}-${index}`}>{point.day}</span>
+                {attendance.labels.map((label, index) => (
+                  <span key={`${label}-${index}`}>{label}</span>
                 ))}
               </div>
               <div className={styles.chartFoot}>
@@ -421,15 +540,32 @@ export function AcsScreenshot({ className = '' }: { className?: string }) {
                 {actions.map((action) => {
                   const Icon = action.icon
                   return (
-                    <span className={styles.action} key={action.label}>
+                    <button
+                      key={action.label}
+                      type="button"
+                      className={`${styles.action} ${
+                        activeAction === action.label ? styles.actionActive : ''
+                      }`}
+                      onClick={() => setActiveAction(action.label)}
+                      aria-pressed={activeAction === action.label}
+                    >
                       <span className={styles.actionIcon}>
                         <Icon size={12} strokeWidth={1.7} />
                       </span>
                       <span className={styles.actionLabel}>{action.label}</span>
-                    </span>
+                    </button>
                   )
                 })}
               </div>
+              {activeAction ? (
+                <p className={styles.actionNote}>
+                  {activeAction} is ready in the live platform.{' '}
+                  <a href={ACS_PLATFORM_URL} target="_blank" rel="noreferrer">
+                    Open it
+                    <ArrowUpRight size={11} aria-hidden="true" />
+                  </a>
+                </p>
+              ) : null}
             </div>
 
             <div className={styles.panel}>
@@ -448,9 +584,84 @@ export function AcsScreenshot({ className = '' }: { className?: string }) {
                 ))}
               </div>
             </div>
+            </div>
+          ) : (
+            <div className={styles.content}>
+              <div className={styles.moduleView}>
+                <span className={styles.moduleIcon}>
+                  <ActiveNavIcon size={22} strokeWidth={1.7} />
+                </span>
+                <p className={styles.moduleKicker}>ACS workspace</p>
+                <h2>{activeNav}</h2>
+                <p className={styles.moduleCopy}>
+                  The {activeNav} workspace is part of the live ACS platform. Open it to see the
+                  full records, actions and workflow.
+                </p>
+                <div className={styles.moduleActions}>
+                  <a
+                    className={styles.moduleLink}
+                    href={ACS_PLATFORM_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Open {activeNav} in the live platform
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                  <button
+                    type="button"
+                    className={styles.moduleBack}
+                    onClick={() => setActiveNav('Dashboard')}
+                  >
+                    Back to dashboard
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+              </div>
+            </div>
           </div>
         </div>
+
+        <div className={styles.mobilePanel}>
+          <div
+            className={styles.frame}
+            role="group"
+            aria-label="ACS mobile dashboard preview"
+          >
+            <AcsMobileDashboard />
+          </div>
+        </div>
+
+        {!expanded ? (
+          <div className={styles.fade}>
+        <button
+          type="button"
+          className={styles.expandButton}
+          onClick={() => setExpanded(true)}
+          aria-expanded={false}
+          aria-controls="acs-demo-viewport"
+        >
+          Show full platform
+          <ChevronDown size={14} aria-hidden="true" />
+        </button>
       </div>
+    ) : null}
+      </div>
+      {expanded ? (
+        <div className={styles.collapseRow}>
+          <button
+            type="button"
+            className={styles.collapseButton}
+            onClick={() => setExpanded(false)}
+            aria-expanded
+            aria-controls="acs-demo-viewport"
+          >
+            Show less
+            <ChevronUp size={14} aria-hidden="true" />
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }
