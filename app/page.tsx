@@ -5,12 +5,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { SiteHeader } from '@/components/site/SiteHeader'
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { SiteButton } from '@/components/site/SiteButton'
-import { ArchitectureDiagram } from '@/components/visuals/ArchitectureDiagram'
-import { AcsScreenshot } from '@/components/visuals/AcsScreenshot'
-import { AiScreenshot } from '@/components/visuals/AiScreenshot'
-import { ArticleCover } from '@/components/visuals/ArticleCover'
-import { articles, getFeaturedArticle } from '@/lib/insights-data'
-import { formatDate } from '@/lib/format-date'
+import { articles } from '@/lib/insights-data'
 import styles from './home.module.css'
 
 export const metadata: Metadata = {
@@ -25,62 +20,48 @@ export const metadata: Metadata = {
   },
 }
 
-const technologyAreas = [
+const products = [
   {
-    number: '01',
-    title: 'Software engineering',
-    description: 'Product-grade applications, APIs and the systems that hold them together.',
+    name: 'ACS',
+    sub: 'Academic Cloud System',
+    line: 'A clearer school day.',
+    cta: 'Explore ACS',
+    href: '/products/acs',
+    tone: 'light',
   },
   {
-    number: '02',
-    title: 'Applied intelligence',
-    description: 'Models, evaluation and interfaces that make intelligence genuinely useful.',
-  },
-  {
-    number: '03',
-    title: 'Digital infrastructure',
-    description: 'Cloud platforms, data foundations and deployment built to be depended on.',
-  },
-  {
-    number: '04',
-    title: 'Product engineering',
-    description: 'From first direction to a working system in daily use.',
+    name: 'VexelLabs AI',
+    sub: 'Applied intelligence',
+    line: 'A space for better questions.',
+    cta: 'Explore VexelLabs AI',
+    href: '/products/ai',
+    tone: 'dark',
   },
 ]
 
 export default function HomePage() {
-  const featured = getFeaturedArticle()
-  const latest = articles.filter((article) => article.slug !== featured?.slug).slice(0, 3)
+  const journal = articles.slice(0, 2)
 
   return (
-    <main id="top">
+    <main id="top" className={styles.home}>
       <SiteHeader />
 
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <div className={styles.heroTop}>
-            <p className="eyebrow rise">VexelLabs / Technology company</p>
-            <span className={`${styles.heroIndex} rise`}>VXL / 001</span>
-          </div>
-
-          <h1 className={`${styles.heroTitle} rise rise-delay-1`}>
-            Engineering technology for what comes next.
-          </h1>
-
-          <div className={styles.heroLower}>
-            <p className={`${styles.heroLede} rise rise-delay-2`}>
-              We build intelligent products and digital systems with a clear purpose.
-            </p>
-            <div className={`${styles.heroActions} rise rise-delay-3`}>
-              <SiteButton href="/products">Explore our work</SiteButton>
-              <SiteButton href="/contact" variant="outline">
-                Contact our team
-              </SiteButton>
-            </div>
+        <div className={styles.heroCopy}>
+          <p className={styles.kicker}>VexelLabs</p>
+          <h1 className={styles.heroTitle}>Engineering technology for what comes next.</h1>
+          <p className={styles.heroLede}>
+            We build intelligent products and digital systems with a clear purpose.
+          </p>
+          <div className={styles.heroActions}>
+            <SiteButton href="/products">Explore our work</SiteButton>
+            <SiteButton href="/contact" variant="outline">
+              Contact our team
+            </SiteButton>
           </div>
         </div>
 
-        <figure className={`${styles.heroMedia} rise rise-delay-2`}>
+        <div className={styles.heroMedia}>
           <Image
             src="/images/hero.jpg"
             alt="Layered glass planes and structural grids forming an abstract architectural system"
@@ -90,187 +71,72 @@ export default function HomePage() {
             sizes="(max-width: 1150px) 100vw, 1150px"
             className={styles.heroImage}
           />
-          <figcaption className={styles.heroMediaFoot}>
-            <span>Systems, platforms and applied intelligence</span>
-            <span>Lagos / Working globally</span>
-          </figcaption>
-        </figure>
-
-        <div className={styles.heroFoot}>
-          <div className={styles.heroFootInner}>
-            <span>Product engineering</span>
-            <span>Applied intelligence</span>
-            <span>Digital infrastructure</span>
-            <span className={styles.heroLocation}>Research-led practice</span>
-          </div>
         </div>
       </section>
 
-      <section className={`${styles.intro} theme-light`}>
-        <div className="container">
-          <div className={styles.sectionTop}>
-            <p className="eyebrow">Who we are</p>
-            <Link className="text-link" href="/about">
+      <section className={styles.intro}>
+        <div className={styles.introGrid}>
+          <h2 className={styles.h2}>
+            Grounded in context.
+            <br />
+            Unrestricted in ambition.
+          </h2>
+          <div className={styles.copy}>
+            <p>
+              Founded in Lagos. Building intelligent products and digital systems for a wider world.
+            </p>
+            <Link className={styles.textLink} href="/about">
               About VexelLabs <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
-          </div>
-
-          <div className={styles.introGrid}>
-            <h2 className="display">Grounded in context. Unrestricted in ambition.</h2>
-            <div className={styles.introCopy}>
-              <p>
-                VexelLabs is a technology company building products and systems from Lagos for a
-                global market. We work where product thinking, engineering discipline and applied
-                research meet.
-              </p>
-              <p>
-                We stay close to the problem, question the obvious answer, and design for the world
-                beyond our immediate context.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.contextBand}>
-            <p className={styles.contextQuote}>
-              “We build close to the problem, and design for the world beyond it.”
-            </p>
-            <dl className={styles.contextFacts}>
-              <div>
-                <dt>Origin</dt>
-                <dd>Lagos, Nigeria</dd>
-              </div>
-              <div>
-                <dt>Scope</dt>
-                <dd>Products, systems, research</dd>
-              </div>
-              <div>
-                <dt>Ambition</dt>
-                <dd>Global by design</dd>
-              </div>
-            </dl>
           </div>
         </div>
       </section>
 
       <section className={styles.technology}>
-        <div className="container">
-          <div className={styles.technologyHead}>
-            <div>
-              <p className="eyebrow">Technology and engineering</p>
-              <h2 className="display">Systems built with intent.</h2>
-            </div>
-            <div className={styles.technologyAside}>
-              <p>
-                We design the whole system, not just the surface. Every layer is chosen for the
-                problem it has to carry.
-              </p>
-              <Link className="text-link" href="/technology">
-                Explore technology <ArrowUpRight size={14} aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-
-          <div className={styles.technologyGrid}>
-            <ArchitectureDiagram />
-            <div className={styles.capabilityList}>
-              {technologyAreas.map((area) => (
-                <div className={styles.capabilityRow} key={area.number}>
-                  <span>{area.number}</span>
-                  <div>
-                    <h3>{area.title}</h3>
-                    <p>{area.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className={styles.introGrid}>
+          <h2 className={styles.h2}>
+            The system behind
+            <br />
+            the experience.
+          </h2>
+          <div className={styles.copy}>
+            <p>
+              Software engineering, cloud platforms and intelligent assistance, connected through
+              the products we build.
+            </p>
+            <Link className={styles.textLink} href="/technology">
+              Explore our technology <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className={`${styles.products} theme-light`}>
-        <div className="container">
-          <div className={styles.sectionTop}>
-            <p className="eyebrow">Products</p>
-            <Link className="text-link" href="/products">
-              All products <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className={styles.productsHead}>
-            <h2 className="display">Software with a clear job to do.</h2>
-            <p className="lede">
-              Two products, each built around a specific problem and given the room to become its
-              own thing.
-            </p>
-          </div>
-
-          <article className={styles.productShowcase} id="acs">
-            <div className={styles.productInfo}>
-              <div className={styles.productMark}>
-                <span className={styles.productLogoAcs}>acs</span>
-                <span>Product 01 / Education</span>
-              </div>
-              <h3>Academic Cloud System</h3>
-              <p>
-                A cloud-based school management platform for primary schools. Enrolment,
-                attendance, fees and reporting in one dependable system.
-              </p>
-              <ul className={styles.productPoints}>
-                <li>Pupil records and enrolment</li>
-                <li>Attendance and term reporting</li>
-                <li>Fees, receipts and ledgers</li>
-              </ul>
-              <Link className={styles.productLink} href="/products/acs">
-                Explore ACS <ArrowUpRight size={16} aria-hidden="true" />
+      <section className={styles.products}>
+        <h2 className={styles.h2}>Purpose-built products</h2>
+        <div className={styles.productGrid}>
+          {products.map((product) => (
+            <article key={product.name} className={styles.productCard}>
+              <Link
+                className={`${styles.productTile} ${
+                  product.tone === 'dark' ? styles.productDark : styles.productLight
+                }`}
+                href={product.href}
+              >
+                <span className={styles.productName}>{product.name}</span>
+                <span className={styles.productSub}>{product.sub}</span>
               </Link>
-            </div>
-            <div className={styles.productVisual}>
-              <AcsScreenshot />
-            </div>
-          </article>
-
-          <article className={`${styles.productShowcase} ${styles.productReverse}`} id="ai">
-            <div className={styles.productInfo}>
-              <div className={styles.productMark}>
-                <span className={styles.productLogoAi}>VX</span>
-                <span>Product 02 / Intelligence</span>
-              </div>
-              <h3>VexelLabs AI</h3>
-              <p>
-                An applied intelligence platform for teams building with models. Evaluation,
-                retrieval and deployment in one considered workflow.
-              </p>
-              <ul className={styles.productPoints}>
-                <li>Prompt and evaluation workflows</li>
-                <li>Grounded retrieval with citations</li>
-                <li>Production monitoring and insight</li>
-              </ul>
-              <Link className={styles.productLink} href="/products/ai">
-                Explore VexelLabs AI <ArrowUpRight size={16} aria-hidden="true" />
+              <h3 className={styles.productLine}>{product.line}</h3>
+              <Link className={styles.textLink} href={product.href}>
+                {product.cta} <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
-            </div>
-            <div className={styles.productVisual}>
-              <AiScreenshot />
-            </div>
-          </article>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className={styles.research}>
-        <div className={`container ${styles.researchGrid}`}>
-          <div className={styles.researchCopy}>
-            <p className="eyebrow">Research and innovation</p>
-            <h2 className="display">Research with a reason to exist.</h2>
-            <p className="lede">
-              We study the systems we build and the systems that come next. Our interests span
-              artificial intelligence, machine learning and applied computing, always tied to a
-              real problem.
-            </p>
-            <Link className="text-link" href="/research">
-              Explore research <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-          <figure className={styles.researchFigure}>
+        <div className={styles.researchGrid}>
+          <div className={styles.researchMedia}>
             <Image
               src="/images/research.jpg"
               alt="Translucent glass forms arranged as a study in structure and light"
@@ -280,75 +146,42 @@ export default function HomePage() {
               sizes="(max-width: 828px) 100vw, 828px"
               className={styles.researchImage}
             />
-            <figcaption className={styles.researchCaption}>
-              <span>Research / Applied systems</span>
-              <span>Study 01</span>
-            </figcaption>
-          </figure>
+          </div>
+          <div className={styles.copy}>
+            <p className={styles.kicker}>Research &amp; innovation</p>
+            <h2 className={styles.h2}>Questions worth pursuing.</h2>
+            <p>
+              Our interests span applied AI, machine learning and useful emerging technologies.
+            </p>
+            <Link className={styles.textLink} href="/research">
+              Explore our research interests <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className={`${styles.insights} theme-light`}>
-        <div className="container">
-          <div className={styles.sectionTop}>
-            <p className="eyebrow">Latest insights</p>
-            <Link className="text-link" href="/insights">
-              Visit insights <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className={styles.insightsGrid}>
-            {featured && (
-              <Link className={styles.featuredInsight} href={`/insights/${featured.slug}`}>
-                <ArticleCover category={featured.category} seed={featured.slug} />
-                <div className={styles.insightMeta}>
-                  <span>{featured.category}</span>
-                  <span>{formatDate(featured.publishedDate, { month: 'short', year: 'numeric' })}</span>
-                </div>
-                <h3>{featured.title}</h3>
-                <p>{featured.excerpt}</p>
-                <span className={styles.insightRead}>
-                  Read the note <ArrowUpRight size={14} aria-hidden="true" />
-                </span>
+      <section className={styles.journal}>
+        <h2 className={styles.h2}>From the journal</h2>
+        <div className={styles.journalGrid}>
+          {journal.map((article) => (
+            <article key={article.slug} className={styles.journalItem}>
+              <span className={styles.micro}>{article.category}</span>
+              <h3>
+                <Link href={`/insights/${article.slug}`}>{article.title}</Link>
+              </h3>
+              <p>{article.excerpt}</p>
+              <Link className={styles.textLink} href={`/insights/${article.slug}`}>
+                Read the note <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
-            )}
-
-            <div className={styles.insightList}>
-              {latest.map((article) => (
-                <Link className={styles.insightRow} href={`/insights/${article.slug}`} key={article.slug}>
-                  <div className={styles.insightThumb}>
-                    <ArticleCover category={article.category} seed={article.slug} />
-                  </div>
-                  <div>
-                    <span className={styles.insightMetaText}>
-                      {article.category} / {article.readingTime} min read
-                    </span>
-                    <h3>{article.title}</h3>
-                    <span className={styles.insightDate}>{formatDate(article.publishedDate)}</span>
-                  </div>
-                  <ArrowUpRight size={16} aria-hidden="true" />
-                </Link>
-              ))}
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className={styles.cta}>
-        <div className={`container ${styles.ctaInner}`}>
-          <div>
-            <p className="eyebrow">Start a conversation</p>
-            <h2 className="display">Let&apos;s build what matters.</h2>
-          </div>
-          <div className={styles.ctaActions}>
-            <p>Tell us what you are trying to make possible.</p>
-            <SiteButton href="/contact" variant="light">
-              Contact our team
-            </SiteButton>
-            <a className={styles.ctaEmail} href="mailto:hello@vexellabs.com">
-              hello@vexellabs.com
-            </a>
-          </div>
+        <div className={styles.ctaInner}>
+          <h2 className={styles.h2}>Let&apos;s build what matters.</h2>
+          <SiteButton href="/contact">Contact our team</SiteButton>
         </div>
       </section>
 
