@@ -51,7 +51,7 @@ export default function ContactClient() {
       '',
       message,
     ].join('\n')
-    const mailto = `mailto:hello@vexellabs.com?subject=${encodeURIComponent(
+    const mailto = `mailto:stackkens@gmail.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`
     setStatus({ state: 'ready', mailto })
@@ -74,9 +74,19 @@ export default function ContactClient() {
             <p className={styles.kicker}>Start here</p>
             <h2 className={`${styles.h2} ${styles.rowsSpaced}`}>Give us the first signal.</h2>
             <div className={styles.directEmail}>
-              <span>Prefer email?</span>
-              <a href="mailto:hello@vexellabs.com">
-                hello@vexellabs.com <ArrowUpRight size={14} aria-hidden="true" />
+              <span>Email</span>
+              <a href="mailto:stackkens@gmail.com">
+                Send an email <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </div>
+            <div className={styles.directEmail}>
+              <span>WhatsApp</span>
+              <a
+                href="https://wa.me/256755038100"
+                target="_blank"
+                rel="noreferrer"
+              >
+                0755 038 100 <ArrowUpRight size={14} aria-hidden="true" />
               </a>
             </div>
             <div className={styles.directEmail}>
@@ -94,7 +104,7 @@ export default function ContactClient() {
               <h3>Your message is prepared.</h3>
               <p>
                 Open the draft in your email app, review it and send it to us. If your app did not
-                open, email <a href="mailto:hello@vexellabs.com">hello@vexellabs.com</a> directly.
+                open, <a href="mailto:stackkens@gmail.com">send an email</a> directly.
               </p>
               <div className={styles.successActions}>
                 <SiteButton href={status.mailto} external>

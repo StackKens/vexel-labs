@@ -107,8 +107,8 @@ export default function CareersPage() {
               </p>
               <div className={styles.formActions}>
                 <SiteButton href="/contact">Introduce yourself</SiteButton>
-                <a className={styles.textLink} href="mailto:hello@vexellabs.com">
-                  hello@vexellabs.com <ArrowUpRight size={14} aria-hidden="true" />
+                <a className={styles.textLink} href="mailto:stackkens@gmail.com">
+                  Send an email <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
               </div>
             </div>

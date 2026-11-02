@@ -49,8 +49,8 @@ export function SiteFooter() {
             <br />
             for what comes next.
           </p>
-          <a className={styles.email} href="mailto:hello@vexellabs.com">
-            hello@vexellabs.com
+          <a className={styles.email} href="mailto:stackkens@gmail.com">
+            Send an email
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </div>
@@ -76,8 +76,12 @@ export function SiteFooter() {
               X / Twitter
               <ArrowUpRight size={13} aria-hidden="true" />
             </a>
-            <a href="mailto:hello@vexellabs.com">
-              Email
+            <a href="https://wa.me/256755038100" target="_blank" rel="noreferrer">
+              WhatsApp
+              <ArrowUpRight size={13} aria-hidden="true" />
+            </a>
+            <a href="mailto:stackkens@gmail.com">
+              Send an email
               <ArrowUpRight size={13} aria-hidden="true" />
             </a>
           </div>

@@ -28,6 +28,7 @@ const products = [
     cta: 'Explore ACS',
     href: '/products/acs',
     tone: 'light',
+    status: '',
   },
   {
     name: 'VexelLabs AI',
@@ -36,6 +37,7 @@ const products = [
     cta: 'Explore VexelLabs AI',
     href: '/products/ai',
     tone: 'dark',
+    status: 'Coming soon',
   },
 ]
 
@@ -124,6 +126,9 @@ export default function HomePage() {
               >
                 <span className={styles.productName}>{product.name}</span>
                 <span className={styles.productSub}>{product.sub}</span>
+                {product.status ? (
+                  <span className={styles.productStatus}>{product.status}</span>
+                ) : null}
               </Link>
               <h3 className={styles.productLine}>{product.line}</h3>
               <Link className={styles.textLink} href={product.href}>

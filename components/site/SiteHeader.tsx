@@ -198,7 +198,10 @@ export function SiteHeader() {
           </div>
           <div>
             <span>Get in touch</span>
-            <a href="mailto:hello@vexellabs.com">hello@vexellabs.com</a>
+            <a href="mailto:stackkens@gmail.com">Send an email</a>
+            <a href="https://wa.me/256755038100" target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
             <p>Kampala, Uganda / Working globally</p>
           </div>
         </div>

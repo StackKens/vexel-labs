@@ -8,7 +8,7 @@ import { ArrowUpRight } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Products',
   description:
-    'VexelLabs products: Academic Cloud System, a school management platform, and VexelLabs AI, an applied intelligence workspace.',
+    'VexelLabs products: Academic Cloud System, a school management platform, and VexelLabs AI, an applied intelligence workspace in development.',
   alternates: { canonical: '/products' },
   openGraph: {
     title: 'Products — VexelLabs',
@@ -25,6 +25,7 @@ const products = [
     cta: 'Explore ACS',
     href: '/products/acs',
     tone: 'light',
+    status: '',
   },
   {
     name: 'VexelLabs AI',
@@ -33,6 +34,7 @@ const products = [
     cta: 'Explore VexelLabs AI',
     href: '/products/ai',
     tone: 'dark',
+    status: 'Coming soon',
   },
 ]
 
@@ -78,6 +80,9 @@ export default function ProductsPage() {
               >
                 <span className={styles.productName}>{product.name}</span>
                 <span className={styles.productSub}>{product.sub}</span>
+                {product.status ? (
+                  <span className={styles.productStatus}>{product.status}</span>
+                ) : null}
               </Link>
               <h2 className={styles.productLine}>{product.line}</h2>
               <Link className={styles.textLink} href={product.href}>
