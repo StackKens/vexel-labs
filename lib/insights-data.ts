@@ -21,7 +21,7 @@ export interface Article {
 export type ArticleSummary = Omit<Article, 'content'>
 
 const vexelTeam: Author = {
-  name: 'Vexel Labs',
+  name: 'VexelLabs',
   role: 'Technology & Engineering',
 }
 

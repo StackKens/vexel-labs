@@ -4,11 +4,12 @@ import InsightsClient from './insights-client'
 
 export const metadata: Metadata = {
   title: 'Insights',
-  description: 'Practical thinking about software products, artificial intelligence, engineering, and the systems being built at Vexel Labs.',
+  description:
+    'Practical thinking about software products, artificial intelligence, engineering and the systems being built at VexelLabs.',
   alternates: { canonical: '/insights' },
   openGraph: {
-    title: 'Insights — Vexel Labs',
-    description: 'Ideas, engineering, and technology from Vexel Labs.',
+    title: 'Insights — VexelLabs',
+    description: 'Ideas, engineering and technology from VexelLabs.',
     url: '/insights',
   },
 }
@@ -18,5 +19,11 @@ export default function InsightsPage() {
   const availableCategories = ['All', ...new Set(articles.map((article) => article.category))]
   const featured = getFeaturedArticle()
 
-  return <InsightsClient articles={summaries} categories={availableCategories} featured={featured ? toArticleSummary(featured) : undefined} />
+  return (
+    <InsightsClient
+      articles={summaries}
+      categories={availableCategories}
+      featured={featured ? toArticleSummary(featured) : undefined}
+    />
+  )
 }

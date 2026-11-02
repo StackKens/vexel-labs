@@ -1,0 +1,528 @@
+.hero {
+  padding: calc(72px + clamp(3.5rem, 7vw, 7rem)) var(--gutter) clamp(3.5rem, 6vw, 5.5rem);
+  background:
+    radial-gradient(65% 70% at 86% 4%, rgb(71 123 255 / 13%), transparent 58%),
+    var(--bg);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  align-items: end;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.heroCopy {
+  max-width: 760px;
+}
+
+.heroTitle {
+  max-width: 12ch;
+  margin-top: 1.75rem;
+  font-size: clamp(3.1rem, 6vw, 6.3rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.93;
+}
+
+.heroLede {
+  max-width: 31rem;
+  margin-top: 1.75rem;
+  color: var(--text-2);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.index {
+  width: 100%;
+  max-width: 470px;
+  justify-self: end;
+  border-top: 1px solid var(--line-strong);
+}
+
+.indexHead,
+.indexFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  color: var(--text-3);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.indexHead {
+  border-bottom: 1px solid var(--line);
+}
+
+.index > a {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left 220ms ease, background-color 220ms ease;
+}
+
+.index > a:hover {
+  padding-left: 0.5rem;
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+}
+
+.index > a > span:first-child {
+  color: var(--text-3);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+.index > a div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.index > a strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.index > a small {
+  color: var(--text-3);
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.index > a svg {
+  color: var(--text-3);
+  transition: color 180ms ease;
+}
+
+.index > a:hover svg {
+  color: var(--text);
+}
+
+.indexMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.index > a:first-of-type .indexMark {
+  background: #0e5c43;
+  color: #a9e8cb;
+}
+
+.index > a:nth-of-type(2) .indexMark {
+  background: linear-gradient(135deg, #6d5df6, #3f7bff);
+  color: #fff;
+}
+
+.indexFoot {
+  border-top: 0;
+  justify-content: space-between;
+  font-size: 0.56rem;
+}
+
+.acs {
+  padding-block: var(--section-y);
+}
+
+.productTop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--light-line);
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.productTop span:last-child {
+  margin-left: auto;
+}
+
+.productHead {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+  gap: clamp(2rem, 6vw, 6rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.productHead > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.productHead h2 {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 5vw, 5rem);
+}
+
+.productHead .lede {
+  max-width: 30rem;
+  color: var(--light-text-2);
+}
+
+.productLogoAcs {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.5rem;
+  background: #0e5c43;
+  color: #a9e8cb;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.productLogoAi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.55rem;
+  background: linear-gradient(135deg, #6d5df6, #3f7bff);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.productBody {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  align-items: start;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.productBodyReverse {
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+}
+
+.productBodyReverse .productCopy {
+  order: 2;
+}
+
+.productBodyReverse .productVisual {
+  order: 1;
+}
+
+.productCopy {
+  max-width: 34rem;
+}
+
+.productLead {
+  color: var(--light-text);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+}
+
+.productCopy > p:not(.productLead) {
+  margin-top: 1.1rem;
+  color: var(--light-text-2);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.featureList {
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--light-line);
+}
+
+.featureList > div {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  gap: 0.9rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--light-line);
+}
+
+.featureList span {
+  padding-top: 0.2rem;
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+}
+
+.featureList h3 {
+  font-size: 1.02rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.featureList p {
+  max-width: 36ch;
+  margin-top: 0.3rem;
+  color: var(--light-text-2);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.productCopy > a {
+  margin-top: 1.75rem;
+  color: var(--light-text);
+}
+
+.productVisual {
+  min-width: 0;
+  width: 100%;
+}
+
+.ai {
+  padding-block: var(--section-y);
+  background: var(--bg-2);
+  border-block: 1px solid var(--line);
+}
+
+.ai .productTop {
+  border-bottom-color: var(--line);
+  color: var(--text-3);
+}
+
+.ai .productHead .lede {
+  color: var(--text-2);
+}
+
+.ai .productLead {
+  color: var(--text);
+}
+
+.ai .productCopy > p:not(.productLead) {
+  color: var(--text-2);
+}
+
+.ai .featureList {
+  border-top-color: var(--line);
+}
+
+.ai .featureList > div {
+  border-bottom-color: var(--line);
+}
+
+.ai .featureList span {
+  color: var(--text-3);
+}
+
+.ai .featureList p {
+  color: var(--text-2);
+}
+
+.ai .productCopy > a {
+  color: var(--text);
+}
+
+.shared {
+  padding-block: var(--section-y);
+}
+
+.sharedHead {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+  gap: clamp(2.5rem, 8vw, 8rem);
+}
+
+.sharedHead h2 {
+  max-width: 15ch;
+  margin-top: 1.6rem;
+}
+
+.sharedHead .lede {
+  color: var(--light-text-2);
+}
+
+.sharedList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--light-line);
+}
+
+.sharedList > div {
+  padding: 1.2rem 1.6rem 1.6rem 0;
+  border-right: 1px solid var(--light-line);
+}
+
+.sharedList > div + div {
+  padding-left: 1.6rem;
+}
+
+.sharedList > div:last-child {
+  border-right: 0;
+}
+
+.sharedList span {
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+.sharedList h3 {
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.sharedList p {
+  max-width: 30ch;
+  margin-top: 0.65rem;
+  color: var(--light-text-2);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.cta {
+  padding-block: clamp(5rem, 9vw, 9rem);
+  background:
+    radial-gradient(75% 120% at 88% 0%, rgb(71 123 255 / 18%), transparent 60%),
+    var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+
+.ctaInner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: end;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.ctaInner h2 {
+  max-width: 12ch;
+  margin-top: 1.5rem;
+  font-size: clamp(3rem, 6vw, 6.2rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+}
+
+.ctaActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.ctaActions p {
+  color: var(--text-2);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.ctaActions > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.ctaActions .text-link {
+  color: var(--text-2);
+}
+
+@media (max-width: 1080px) {
+  .heroGrid,
+  .productHead,
+  .productBody,
+  .productBodyReverse,
+  .sharedHead,
+  .ctaInner {
+    grid-template-columns: 1fr;
+  }
+
+  .index {
+    justify-self: start;
+    max-width: 560px;
+  }
+
+  .productVisual {
+    order: 2;
+  }
+
+  .productBodyReverse .productCopy {
+    order: 1;
+  }
+
+  .productBodyReverse .productVisual {
+    order: 2;
+  }
+
+  .productCopy {
+    max-width: 44rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: calc(64px + 3.25rem);
+  }
+
+  .productTop span:last-child {
+    margin-left: 0;
+  }
+
+  .index > a {
+    grid-template-columns: 1.5rem 1fr auto;
+  }
+
+  .indexMark {
+    display: none;
+  }
+
+  .indexFoot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .sharedList {
+    grid-template-columns: 1fr;
+  }
+
+  .sharedList > div,
+  .sharedList > div + div {
+    padding: 1.2rem 0 1.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--light-line);
+  }
+
+  .sharedList h3 {
+    margin-top: 1.5rem;
+  }
+
+  .ctaActions > div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

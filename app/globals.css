@@ -1,34 +1,60 @@
 :root {
-  --ink: #101110;
-  --paper: #f3f2ed;
-  --muted: #777872;
-  --line: #d7d7d0;
-  --accent: #fcf75e;
-  --soft: #e8e8e1;
+  --bg: #080d16;
+  --bg-raised: #101722;
+  --surface: #151f2d;
+  --surface-2: #1a2535;
+  --text: #f5f6f8;
+  --text-2: #a4afbe;
+  --text-3: #6f7c8e;
+  --line: #293444;
+  --line-strong: #3b4759;
+  --accent: #477bff;
+  --accent-bright: #7a9dff;
+
+  --light-bg: #f2f4f7;
+  --light-raised: #ffffff;
+  --light-surface: #e7ebf1;
+  --light-text: #0b1220;
+  --light-text-2: #4c5868;
+  --light-text-3: #7b8797;
+  --light-line: #d4dae3;
+
+  --max: 1360px;
+  --gutter: clamp(1.25rem, 4.8vw, 5.5rem);
+  --section-y: clamp(5rem, 9vw, 9rem);
+  --radius: 4px;
+
+  --font-display: var(--font-geist), 'Helvetica Neue', Arial, sans-serif;
+  --font-body: var(--font-manrope), 'Helvetica Neue', Arial, sans-serif;
+
+  color-scheme: dark;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--paper);
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   min-width: 320px;
   margin: 0;
-  overflow-x: hidden;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-body,
 button,
 input,
 select,
@@ -36,15 +62,28 @@ textarea {
   font: inherit;
 }
 
-button,
-input,
-select,
-textarea {
-  color: inherit;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 550;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
 }
 
 button {
   border: 0;
+  color: inherit;
 }
 
 a {
@@ -57,28 +96,258 @@ a {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-bright);
   outline-offset: 4px;
 }
 
 ::selection {
   background: var(--accent);
-  color: var(--ink);
+  color: #fff;
 }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
 }
 
 .eyebrow {
-  color: var(--muted);
-  font-size: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-3);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   line-height: 1.4;
   text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.6rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.display {
+  font-size: clamp(2.75rem, 5.6vw, 5.75rem);
+  font-weight: 530;
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+}
+
+.display-sm {
+  font-size: clamp(2.2rem, 3.8vw, 3.75rem);
+  font-weight: 530;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.lede {
+  max-width: 34rem;
+  color: var(--text-2);
+  font-size: clamp(1.02rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.muted {
+  color: var(--text-2);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  transition: gap 200ms ease, opacity 200ms ease;
+}
+
+.text-link:hover {
+  gap: 0.85rem;
+  opacity: 0.72;
+}
+
+.theme-light {
+  color-scheme: light;
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+.theme-light .eyebrow {
+  color: var(--light-text-3);
+}
+
+.theme-light .lede,
+.theme-light .muted {
+  color: var(--light-text-2);
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--line);
+}
+
+.theme-light .rule {
+  background: var(--light-line);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.prose {
+  font-size: clamp(1.05rem, 1.25vw, 1.18rem);
+  line-height: 1.78;
+  color: var(--light-text-2);
+}
+
+.prose h2 {
+  margin: 3.2rem 0 1.1rem;
+  color: var(--light-text);
+  font-size: clamp(1.6rem, 2.2vw, 2.15rem);
+  font-weight: 570;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.prose p {
+  margin-bottom: 1.4rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 1.4rem 0 1.7rem;
+  padding-left: 0;
+}
+
+.prose li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.7rem;
+  color: var(--light-text-2);
+}
+
+.prose ul li::before {
+  content: '';
+  position: absolute;
+  top: 0.78em;
+  left: 0;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.prose ol {
+  counter-reset: item;
+}
+
+.prose ol li {
+  counter-increment: item;
+}
+
+.prose ol li::before {
+  content: counter(item) '.';
+  position: absolute;
+  left: 0;
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.85em;
+}
+
+.prose strong {
+  color: var(--light-text);
+  font-weight: 650;
+}
+
+.prose code {
+  padding: 0.15em 0.4em;
+  border: 1px solid var(--light-line);
+  background: var(--light-surface);
+  border-radius: 3px;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.86em;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rise {
+  animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-delay-1 {
+  animation-delay: 90ms;
+}
+
+.rise-delay-2 {
+  animation-delay: 180ms;
+}
+
+.rise-delay-3 {
+  animation-delay: 270ms;
 }
 
 @media (prefers-reduced-motion: reduce) {

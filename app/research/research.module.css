@@ -1,0 +1,508 @@
+.hero {
+  padding: calc(72px + clamp(3.5rem, 7vw, 7rem)) var(--gutter) clamp(3.5rem, 6vw, 5.5rem);
+  background:
+    radial-gradient(65% 70% at 86% 4%, rgb(71 123 255 / 13%), transparent 58%),
+    var(--bg);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(380px, 1.05fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+}
+
+.heroCopy {
+  max-width: 650px;
+}
+
+.heroTitle {
+  max-width: 11ch;
+  margin-top: 1.75rem;
+  font-size: clamp(3.2rem, 6.2vw, 6.5rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+}
+
+.heroLede {
+  max-width: 31rem;
+  margin-top: 1.75rem;
+  color: var(--text-2);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 2.25rem;
+}
+
+.heroVisual {
+  width: 100%;
+  max-width: 680px;
+  justify-self: end;
+}
+
+.overview {
+  padding-block: var(--section-y);
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+  gap: clamp(2.5rem, 8vw, 8rem);
+}
+
+.overviewGrid h2 {
+  max-width: 15ch;
+  margin-top: 1.6rem;
+}
+
+.overviewCopy {
+  max-width: 34rem;
+  padding-top: 0.4rem;
+  color: var(--light-text-2);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.overviewCopy p + p {
+  margin-top: 1.1rem;
+}
+
+.overviewLead {
+  color: var(--light-text);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+}
+
+.overviewPrinciples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(4rem, 7vw, 6rem);
+  border-top: 1px solid var(--light-line);
+}
+
+.overviewPrinciples > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 1.1rem;
+}
+
+.overviewPrinciples span {
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+.overviewPrinciples strong {
+  color: var(--light-text);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.areas {
+  padding-block: var(--section-y);
+  background: var(--bg-2);
+  border-block: 1px solid var(--line);
+}
+
+.areasHead {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: end;
+  gap: clamp(2.5rem, 8vw, 8rem);
+}
+
+.areasHead h2 {
+  max-width: 16ch;
+  margin-top: 1.6rem;
+}
+
+.areasHead .lede {
+  max-width: 26rem;
+}
+
+.areaList {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line-strong);
+}
+
+.areaRow {
+  display: grid;
+  grid-template-columns: 2rem 1.05fr 1.35fr auto auto;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  padding: 1.5rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 220ms ease, padding-left 220ms ease;
+}
+
+.areaRow:hover {
+  padding-left: 1rem;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+
+.areaNumber {
+  color: var(--text-3);
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+}
+
+.areaTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.areaTitle h3 {
+  font-size: clamp(1.2rem, 1.9vw, 1.5rem);
+  font-weight: 510;
+  letter-spacing: -0.04em;
+}
+
+.areaTitle span {
+  color: var(--text-3);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.areaRow > p {
+  max-width: 42ch;
+  color: var(--text-2);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.areaStatus {
+  padding: 0.28rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-2);
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.areaRow > svg {
+  color: var(--text-3);
+}
+
+.questions {
+  padding-block: var(--section-y);
+}
+
+.questionsGrid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.questionsGrid h2 {
+  max-width: 10ch;
+  margin-top: 1.6rem;
+}
+
+.questionsGrid .lede {
+  margin-top: 1.5rem;
+  color: var(--light-text-2);
+}
+
+.questionList {
+  border-top: 1px solid var(--light-line);
+}
+
+.questionList li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--light-line);
+}
+
+.questionList li > span:first-child {
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+}
+
+.questionList p {
+  max-width: 40ch;
+  color: var(--light-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-weight: 470;
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+}
+
+.questionState {
+  color: var(--light-text-3);
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.methods {
+  padding-block: var(--section-y);
+  background: var(--bg-2);
+  border-block: 1px solid var(--line);
+}
+
+.methodsHead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.methodsHead h2 {
+  max-width: 15ch;
+  margin-top: 1.6rem;
+}
+
+.methodsHead .lede {
+  max-width: 24rem;
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line-strong);
+}
+
+.method {
+  min-height: 220px;
+  padding: 1.1rem 1.4rem 1.4rem 0;
+  border-right: 1px solid var(--line);
+}
+
+.method + .method {
+  padding-left: 1.4rem;
+}
+
+.method:last-child {
+  border-right: 0;
+}
+
+.method > span {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+}
+
+.method h3 {
+  margin-top: clamp(3rem, 5vw, 4.5rem);
+  font-size: 1.35rem;
+  font-weight: 510;
+  letter-spacing: -0.04em;
+}
+
+.method p {
+  max-width: 24ch;
+  margin-top: 0.65rem;
+  color: var(--text-2);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.publications {
+  padding-block: var(--section-y);
+}
+
+.publicationsGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: start;
+  gap: clamp(2.5rem, 8vw, 8rem);
+}
+
+.publicationsGrid h2 {
+  max-width: 14ch;
+  margin-top: 1.6rem;
+}
+
+.publicationsCopy {
+  max-width: 34rem;
+  padding-top: 0.4rem;
+  color: var(--light-text-2);
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.publicationsCopy p + p {
+  margin-top: 1.1rem;
+}
+
+.publicationsActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  color: var(--light-text);
+}
+
+.cta {
+  padding-block: clamp(5rem, 9vw, 9rem);
+  background:
+    radial-gradient(75% 120% at 88% 0%, rgb(71 123 255 / 18%), transparent 60%),
+    var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+
+.ctaInner {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  align-items: end;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.ctaInner h2 {
+  max-width: 13ch;
+  margin-top: 1.5rem;
+  font-size: clamp(3rem, 6vw, 6.2rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+}
+
+.ctaActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding-bottom: 0.4rem;
+}
+
+.ctaActions p {
+  color: var(--text-2);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1080px) {
+  .heroGrid,
+  .overviewGrid,
+  .areasHead,
+  .questionsGrid,
+  .methodsHead,
+  .publicationsGrid,
+  .ctaInner {
+    grid-template-columns: 1fr;
+  }
+
+  .heroVisual {
+    justify-self: start;
+    max-width: 720px;
+  }
+
+  .questionsGrid .lede,
+  .methodsHead .lede {
+    max-width: 34rem;
+  }
+
+  .areaRow {
+    grid-template-columns: 2rem 1fr auto;
+    gap: 0.8rem 1rem;
+  }
+
+  .areaRow > p {
+    grid-column: 2 / 3;
+  }
+
+  .areaStatus {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .areaRow > svg {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: calc(64px + 3.25rem);
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .overviewPrinciples {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .overviewPrinciples > div {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--light-line);
+  }
+
+  .areaRow {
+    grid-template-columns: 1.75rem 1fr;
+  }
+
+  .areaRow > p {
+    grid-column: 2;
+  }
+
+  .areaStatus {
+    grid-column: 2;
+    grid-row: auto;
+    width: fit-content;
+  }
+
+  .questionList li {
+    grid-template-columns: 1.75rem 1fr;
+    gap: 0.75rem;
+  }
+
+  .questionState {
+    grid-column: 2;
+  }
+
+  .methodGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .method,
+  .method + .method {
+    min-height: 180px;
+    padding: 1rem 1rem 1.2rem 0;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .method:nth-child(2n) {
+    padding-left: 1rem;
+    border-right: 0;
+  }
+
+  .method h3 {
+    margin-top: 2.4rem;
+  }
+}

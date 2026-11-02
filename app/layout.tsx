@@ -1,32 +1,41 @@
 import { Analytics } from '@vercel/analytics/next'
-import { Inter } from 'next/font/google'
+import { Geist, Manrope } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-geist',
+})
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-manrope',
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vexellabs.com'),
   title: {
-    default: 'Vexel Labs — Technology, built with intent',
-    template: '%s — Vexel Labs',
+    default: 'VexelLabs — Engineering technology for what comes next',
+    template: '%s — VexelLabs',
   },
-  description: 'Vexel Labs designs and engineers software, digital products, and intelligent systems for real-world problems.',
-  generator: 'Vexel Labs',
+  description:
+    'VexelLabs designs and engineers intelligent products, digital systems and research-led technology from Africa for the world.',
+  generator: 'VexelLabs',
   openGraph: {
-    title: 'Vexel Labs — Technology, built with intent',
-    description: 'Software, digital products, and intelligent systems built around real problems.',
+    title: 'VexelLabs — Engineering technology for what comes next',
+    description:
+      'Intelligent products and digital systems, built with a clear purpose.',
     type: 'website',
-    siteName: 'Vexel Labs',
+    siteName: 'VexelLabs',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Vexel Labs — Technology, built with intent',
-    description: 'Software, digital products, and intelligent systems built around real problems.',
+    title: 'VexelLabs — Engineering technology for what comes next',
+    description:
+      'Intelligent products and digital systems, built with a clear purpose.',
   },
   icons: {
     icon: [
@@ -48,8 +57,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light',
-  themeColor: '#f3f2ed',
+  colorScheme: 'dark',
+  themeColor: '#080D16',
 }
 
 export default function RootLayout({
@@ -58,8 +67,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.variable}>
+    <html lang="en" className={`${geist.variable} ${manrope.variable}`}>
+      <body>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

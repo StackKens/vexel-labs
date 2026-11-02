@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  description: 'Practical thinking about software products, artificial intelligence, engineering, and the systems being built at Vexel Labs.',
+  description:
+    'Practical thinking about software products, artificial intelligence, engineering and the systems being built at VexelLabs.',
 }
 
 export default function InsightsLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -1,22 +1,43 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import styles from './site-shell.module.css'
+import styles from './site-button.module.css'
 
 type SiteButtonProps = {
   href: string
   children: React.ReactNode
-  variant?: 'primary' | 'quiet' | 'light'
+  variant?: 'primary' | 'outline' | 'light'
   className?: string
   showArrow?: boolean
+  external?: boolean
 }
 
-export function SiteButton({ href, children, variant = 'primary', className = '', showArrow = true }: SiteButtonProps) {
+export function SiteButton({
+  href,
+  children,
+  variant = 'primary',
+  className = '',
+  showArrow = true,
+  external = false,
+}: SiteButtonProps) {
   const classes = `${styles.button} ${styles[variant]} ${className}`.trim()
-  const content = <>{children}{showArrow && <ArrowUpRight size={15} aria-hidden="true" />}</>
+  const content = (
+    <>
+      <span>{children}</span>
+      {showArrow && <ArrowUpRight size={15} aria-hidden="true" />}
+    </>
+  )
 
-  if (href.startsWith('/')) {
-    return <Link className={classes} href={href}>{content}</Link>
+  if (external || !href.startsWith('/')) {
+    return (
+      <a className={classes} href={href} {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}>
+        {content}
+      </a>
+    )
   }
 
-  return <a className={classes} href={href}>{content}</a>
+  return (
+    <Link className={classes} href={href}>
+      {content}
+    </Link>
+  )
 }

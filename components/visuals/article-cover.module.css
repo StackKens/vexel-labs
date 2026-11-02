@@ -1,0 +1,80 @@
+.frame {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0a101a;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+}
+
+.ai circle,
+.research ellipse,
+.technology ellipse {
+  fill: none;
+  stroke: #445c7e;
+  stroke-width: 0.8;
+  transform-origin: center;
+}
+
+.hairline {
+  stroke: #3d5678;
+  stroke-width: 0.7;
+  opacity: 0.6;
+}
+
+.node {
+  fill: #7a9dff;
+}
+
+.core {
+  fill: #477bff;
+  fill-opacity: 0.55;
+  stroke: #b9c9ff;
+  stroke-width: 0.8;
+}
+
+.engineering line {
+  stroke: #3b5273;
+  stroke-width: 0.7;
+}
+
+.accentLine {
+  fill: none;
+  stroke: #477bff;
+  stroke-width: 1;
+  opacity: 0.75;
+}
+
+.brace {
+  fill: none;
+  stroke: #5a7499;
+  stroke-width: 0.8;
+  opacity: 0.7;
+}
+
+.panel {
+  fill: #0e1724;
+  stroke: #334764;
+  stroke-width: 0.8;
+}
+
+.panelActive {
+  fill: #12203a;
+  stroke: #477bff;
+  stroke-width: 1;
+}
+
+.rule {
+  stroke: #293444;
+  stroke-width: 0.8;
+}
+
+.caption {
+  fill: #647690;
+  font-family: var(--font-display);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
