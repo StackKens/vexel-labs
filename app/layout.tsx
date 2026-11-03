@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VexelLabs — Engineering technology for what comes next',
+    title: 'VexelLabs | Engineering technology for what comes next',
     description:
       'Intelligent products and digital systems, built with a clear purpose.',
   },
