@@ -36,9 +36,9 @@ export function SiteFooter() {
         <div className={styles.top}>
           <Link className={styles.brand} href="/" aria-label="VexelLabs home">
             <svg className={styles.mark} viewBox="0 0 22 22" aria-hidden="true">
-              <path d="M2 3h4.2l3 16H4.9L2 3Z" fill="currentColor" />
-              <path d="M8.9 3h4.2l3 16h-4.3L8.9 3Z" fill="currentColor" opacity="0.55" />
-              <path d="M15.8 3H20l-2.9 16h-4.3L15.8 3Z" fill="currentColor" opacity="0.28" />
+               <path d="M6 7h3.2l-5 14H1L6 7Z" fill="currentColor" />
+               <path d="M12 1h3.2l-7 20H5L12 1Z" fill="currentColor" opacity="0.55" />
+               <path d="M15 7h3.2l-5 14H10L15 7Z" fill="currentColor" opacity="0.28" />
             </svg>
             <span className={styles.wordmark}>
               Vexel<span>Labs</span>
