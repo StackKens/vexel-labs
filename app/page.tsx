@@ -9,12 +9,12 @@ import { articles } from '@/lib/insights-data'
 import styles from './home.module.css'
 
 export const metadata: Metadata = {
-  title: { absolute: 'VexelLabs — Engineering technology for what comes next' },
+  title: { absolute: 'VexelLabs | Engineering technology for what comes next' },
   description:
     'VexelLabs designs and engineers intelligent products, digital systems and research-led technology from Africa for the world.',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'VexelLabs — Engineering technology for what comes next',
+    title: 'VexelLabs | Engineering technology for what comes next',
     description: 'Intelligent products and digital systems, built with a clear purpose.',
     url: '/',
   },
