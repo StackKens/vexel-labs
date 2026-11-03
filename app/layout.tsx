@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://vexellabs.com'),
   title: {
     default: 'VexelLabs | Engineering technology for what comes next',
-    template: '%s — VexelLabs',
+    template: '%s | VexelLabs',
   },
   description:
     'VexelLabs designs and engineers intelligent products, digital systems and research-led technology from Africa for the world.',

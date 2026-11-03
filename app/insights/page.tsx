@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'Practical thinking about software products, artificial intelligence, engineering and the systems being built at VexelLabs.',
   alternates: { canonical: '/insights' },
   openGraph: {
-    title: 'Insights — VexelLabs',
+    title: 'Insights | VexelLabs',
     description: 'Ideas, engineering and technology from VexelLabs.',
     url: '/insights',
   },

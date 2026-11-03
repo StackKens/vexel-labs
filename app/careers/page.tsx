@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'Work at VexelLabs on products, intelligent systems and the infrastructure around them. See open roles and introduce yourself.',
   alternates: { canonical: '/careers' },
   openGraph: {
-    title: 'Careers — VexelLabs',
+    title: 'Careers | VexelLabs',
     description: 'Do careful work on useful technology.',
     url: '/careers',
   },

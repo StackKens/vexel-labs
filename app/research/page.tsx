@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'VexelLabs research explores artificial intelligence, machine learning, applied computing and emerging technology through practical, evidence-led inquiry.',
   alternates: { canonical: '/research' },
   openGraph: {
-    title: 'Research — VexelLabs',
+    title: 'Research | VexelLabs',
     description:
       'Questions before answers. Research in AI, machine learning and applied computing at VexelLabs.',
     url: '/research',

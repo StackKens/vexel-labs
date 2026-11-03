@@ -3,7 +3,7 @@
     .background { fill: white; }
     .foreground { fill: black; }
   </style>
-  <rect class="background" width="180" height="180" rx="37" />
+  <rect class="background" width="180" height="180" />
   <g transform="scale(8.1818)" class="foreground">
     <path d="M6 7h3.2l-5 14H1L6 7Z" fill="currentColor" />
     <path d="M12 1h3.2l-7 20H5L12 1Z" fill="currentColor" opacity="0.55" />

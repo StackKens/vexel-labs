@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'VexelLabs is a technology company building intelligent products and digital systems from Kampala, Uganda, for a global market.',
   alternates: { canonical: '/about' },
   openGraph: {
-    title: 'Company — VexelLabs',
+    title: 'Company | VexelLabs',
     description:
       'A technology company built around useful things, with an African origin and global ambition.',
     url: '/about',

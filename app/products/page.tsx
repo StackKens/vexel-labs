@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'VexelLabs products: Academic Cloud System, a school management platform, and VexelLabs AI, an applied intelligence workspace in development.',
   alternates: { canonical: '/products' },
   openGraph: {
-    title: 'Products — VexelLabs',
+    title: 'Products | VexelLabs',
     description: 'Software with a clear job to do.',
     url: '/products',
   },

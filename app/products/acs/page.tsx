@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'ACS is a cloud-based school management platform for primary schools: pupil records, attendance, fees and term reporting in one dependable system.',
   alternates: { canonical: '/products/acs' },
   openGraph: {
-    title: 'Academic Cloud System — VexelLabs',
+    title: 'Academic Cloud System | VexelLabs',
     description:
       'Enrolment, attendance, fees and reporting in one dependable system for primary schools.',
     url: '/products/acs',

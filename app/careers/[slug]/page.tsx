@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: job.description,
     alternates: { canonical: `/careers/${job.slug}` },
     openGraph: {
-      title: `${job.title} — VexelLabs Careers`,
+      title: `${job.title} | VexelLabs Careers`,
       description: job.description,
       url: `/careers/${job.slug}`,
     },

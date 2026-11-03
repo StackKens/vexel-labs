@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'VexelLabs engineering practice across software, artificial intelligence, intelligent systems, cloud platforms, digital infrastructure and product engineering.',
   alternates: { canonical: '/technology' },
   openGraph: {
-    title: 'Technology — VexelLabs',
+    title: 'Technology | VexelLabs',
     description:
       'Engineering the whole system: software, intelligence, data and infrastructure.',
     url: '/technology',

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     'Start a conversation with VexelLabs about a product, system or problem worth solving.',
   alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contact — VexelLabs',
+    title: 'Contact | VexelLabs',
     description: 'Tell VexelLabs what you are trying to build, improve or make possible.',
     url: '/contact',
   },
