@@ -75,34 +75,34 @@ export default function HomePage() {
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <p className={styles.kicker}>VexelLabs</p>
-          <h1 className={styles.heroTitle}>Engineering technology for what comes next.</h1>
+          <p className={styles.kicker}>Engineering technology for what comes next</p>
+          <h1 className={styles.heroTitle}>
+            Product strategy and intelligent systems, shaped for real work.
+          </h1>
           <p className={styles.heroLede}>
-            We build intelligent products and digital systems with a clear purpose — grounded in
-            context, designed for real use, and built to outlast the hype cycle.
+            VexelLabs helps teams turn ambitious ideas into reliable products, digital systems,
+            and AI experiences that improve everyday operations.
           </p>
           <div className={styles.heroActions}>
-            <SiteButton href="/products">Explore our work</SiteButton>
-            <SiteButton href="/contact" variant="outline">
-              Contact our team
-            </SiteButton>
+            <SiteButton href="/contact">Start a project</SiteButton>
+            <Link className={styles.textLink} href="/products">
+              Explore our work <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
           </div>
-          <div className={styles.heroMeta} aria-label="Core capabilities">
+          <div className={styles.heroMeta}>
             <span className={styles.heroChip}>Product strategy</span>
-            <span className={styles.heroChip}>Applied AI</span>
-            <span className={styles.heroChip}>Digital systems</span>
-            <span className={styles.heroChip}>Global delivery</span>
+            <span className={styles.heroChip}>AI systems</span>
+            <span className={styles.heroChip}>Digital infrastructure</span>
           </div>
         </div>
 
         <div className={styles.heroMedia}>
           <Image
             src="/images/hero.jpg"
-            alt="Layered glass planes and structural grids forming an abstract architectural system"
+            alt="VexelLabs product and platform interface"
             width={1150}
             height={498}
             priority
-            sizes="(max-width: 1150px) 100vw, 1150px"
             className={styles.heroImage}
           />
         </div>
