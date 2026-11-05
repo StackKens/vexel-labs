@@ -14,7 +14,7 @@
   --accent-hover: #1c2633;
   --accent-bright: #3462d4;
   min-height: 100vh;
-  background: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%);
   color: #0b1220;
 }
 
@@ -30,8 +30,20 @@
 }
 
 .hero {
+  position: relative;
   padding: calc(64px + clamp(4rem, 7vw, 6rem)) var(--page-gutter) clamp(3.5rem, 6vw, 5rem);
   text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 2rem 18% auto;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(52, 98, 212, 0.1), transparent 62%);
+  filter: blur(24px);
+  pointer-events: none;
 }
 
 .hero > * {
@@ -89,7 +101,7 @@
 
 .alt {
   padding-block: clamp(4rem, 7vw, 6rem);
-  background: var(--bg-raised);
+  background: linear-gradient(180deg, rgba(240, 244, 249, 0.95), rgba(247, 249, 252, 1));
 }
 
 .alt > .sectionInner,
@@ -215,8 +227,10 @@
 
 .card {
   padding: clamp(1.5rem, 2.5vw, 2rem);
-  border-radius: 16px;
-  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 18px 40px -34px rgba(15, 23, 42, 0.32);
 }
 
 .card h3 {
@@ -249,6 +263,8 @@
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
   gap: 1rem;
+  padding: 1.3rem 0;
+  border-top: 1px solid var(--line);
 }
 
 .rowIndex {

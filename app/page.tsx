@@ -41,6 +41,31 @@ const products = [
   },
 ]
 
+const capabilities = [
+  {
+    title: 'Product strategy',
+    text: 'We turn ambiguous opportunities into clear-direction products with the right constraints, target user, and technical shape.',
+    meta: 'Discovery · direction · decision-making',
+  },
+  {
+    title: 'Applied intelligence',
+    text: 'We design AI and intelligent systems that are useful in real work, not just impressive in demos or lab environments.',
+    meta: 'AI · workflows · evaluation',
+  },
+  {
+    title: 'Digital systems',
+    text: 'From interface to infrastructure, we build the tech layer that lets a product operate reliably, scale thoughtfully, and improve over time.',
+    meta: 'Cloud · data · operations',
+  },
+]
+
+const proofPoints = [
+  'Context-first product thinking',
+  'Built for real use',
+  'System-aware delivery',
+  'Global ambition, local grounding',
+]
+
 export default function HomePage() {
   const journal = articles.slice(0, 2)
 
@@ -53,13 +78,20 @@ export default function HomePage() {
           <p className={styles.kicker}>VexelLabs</p>
           <h1 className={styles.heroTitle}>Engineering technology for what comes next.</h1>
           <p className={styles.heroLede}>
-            We build intelligent products and digital systems with a clear purpose.
+            We build intelligent products and digital systems with a clear purpose — grounded in
+            context, designed for real use, and built to outlast the hype cycle.
           </p>
           <div className={styles.heroActions}>
             <SiteButton href="/products">Explore our work</SiteButton>
             <SiteButton href="/contact" variant="outline">
               Contact our team
             </SiteButton>
+          </div>
+          <div className={styles.heroMeta} aria-label="Core capabilities">
+            <span className={styles.heroChip}>Product strategy</span>
+            <span className={styles.heroChip}>Applied AI</span>
+            <span className={styles.heroChip}>Digital systems</span>
+            <span className={styles.heroChip}>Global delivery</span>
           </div>
         </div>
 
@@ -73,6 +105,32 @@ export default function HomePage() {
             sizes="(max-width: 1150px) 100vw, 1150px"
             className={styles.heroImage}
           />
+        </div>
+      </section>
+
+      <section className={styles.capabilities}>
+        <div className={styles.capabilityIntro}>
+          <p className={styles.kicker}>What we build</p>
+          <h2 className={styles.h2}>Technology shaped by the real work, not by trend alone.</h2>
+        </div>
+        <div className={styles.featureGrid}>
+          {capabilities.map((item) => (
+            <article key={item.title} className={`${styles.featureCard} ${styles.reveal}`}>
+              <span className={styles.featureEyebrow}>{item.title}</span>
+              <p className={styles.featureText}>{item.text}</p>
+              <span className={styles.featureMeta}>{item.meta}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.proofStrip} aria-label="Company principles">
+        <div className={styles.proofInner}>
+          {proofPoints.map((point) => (
+            <span key={point} className={styles.proofItem}>
+              {point}
+            </span>
+          ))}
         </div>
       </section>
 

@@ -1,15 +1,16 @@
 :root {
-  --bg: #080d16;
-  --bg-raised: #101722;
-  --surface: #151f2d;
-  --surface-2: #1a2535;
-  --text: #f5f6f8;
-  --text-2: #a4afbe;
-  --text-3: #6f7c8e;
-  --line: #293444;
-  --line-strong: #3b4759;
-  --accent: #477bff;
-  --accent-bright: #7a9dff;
+  --bg: #f5f7fb;
+  --bg-raised: #eef3f9;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --text: #0b1220;
+  --text-2: #525d6d;
+  --text-3: #7b8698;
+  --line: #dfe5ee;
+  --line-strong: #c8d2df;
+  --accent: #10213a;
+  --accent-hover: #1c2f52;
+  --accent-bright: #3462d4;
 
   --light-bg: #f2f4f7;
   --light-raised: #ffffff;
@@ -38,7 +39,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #ffffff;
+  background: linear-gradient(180deg, #f8f9fc 0%, #f3f6fa 100%);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -46,7 +47,7 @@ body {
   min-width: 320px;
   margin: 0;
   overflow-x: clip;
-  background: #ffffff;
+  background: linear-gradient(180deg, #f8f9fc 0%, #f3f6fa 100%);
   color: #0b1220;
   font-family: var(--font-body);
   font-size: 1rem;
